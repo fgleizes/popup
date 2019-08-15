@@ -1,17 +1,18 @@
 <?php  
 	// namespace \Classes;
+	require "config.php";
 
 	class Database
 	{
 		private $pdo;
 
-		public $dbname = "dbPopup";
-		public $dbhost = "localhost";
-		public $dbuser = "root";
-		public $dbpassword = "root";
-
 		public function __construct()
 		{
+			global $config;
+			$this->dbname = $config["dbname"];
+			$this->dbhost = $config["dbhost"];
+			$this->dbuser = $config["dbuser"];
+			$this->dbpassword = $config["dbpassword"];
 			$this->pdo = new PDO
 			(
 				'mysql:dbname='.$this->dbname.';host='.$this->dbhost,
