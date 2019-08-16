@@ -26,7 +26,7 @@
 			* Creation du repertoire cible si inexistant
 			*************************************************************/
 			if( !is_dir(TARGET) ) {
-			  if( !mkdir(TARGET, 0755) ) {
+			  if( !mkdir(TARGET, 0755, true) ) {
 			    exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !');
 			  }
 			}
