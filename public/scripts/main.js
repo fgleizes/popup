@@ -24,6 +24,7 @@ $grid.imagesLoaded(function () {
   $grid.masonry('appended', $items);
 });
 
+
 // //-------------------------------------//
 // // init Infinite Scroll
 
@@ -32,8 +33,8 @@ $grid.infiniteScroll({
   append: '.grid__item',
   outlayer: msnry,
   status: '.page-load-status',
-  // hideNav: '.pagination',
-  history: 'push',
+  hideNav: '.pagination',
+  history: false,
 });
 
 // //-------------------------------------//

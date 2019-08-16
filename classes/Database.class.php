@@ -1,18 +1,21 @@
 <?php  
 	// namespace \Classes;
-	require "config.php";
 
-	class Database
-	{
+	require "Configuration.class.php";
+	
+	class Database extends Configuration
+	{	
 		private $pdo;
 
 		public function __construct()
 		{
-			global $config;
-			$this->dbname = $config["dbname"];
-			$this->dbhost = $config["dbhost"];
-			$this->dbuser = $config["dbuser"];
-			$this->dbpassword = $config["dbpassword"];
+			$configuration = new Configuration();
+
+			$this->dbname = $configuration->dbname;
+			$this->dbhost = $configuration->dbhost;
+			$this->dbuser = $configuration->dbuser;
+			$this->dbpassword = $configuration->dbpassword;
+			
 			$this->pdo = new PDO
 			(
 				'mysql:dbname='.$this->dbname.';host='.$this->dbhost,
@@ -48,24 +51,6 @@
 	        $query->execute($criteria);
 
 	        return $query->fetch(PDO::FETCH_ASSOC);
-	    }
-
-		// public function connect()
-		// {
-		// 	$pdo = new PDO
-		// 	(
-		// 		'mysql:dbname='.$this->dbname.';host='.$this->dbhost,
-		// 		$this->dbuser,
-		// 		$this->dbpassword
-		// 	);
-
-		// 	$pdo->exec('SET NAMES UTF8');
-
-		// 	$this->pdo = $pdo;
-
-		// 	echo "connexion établie <br>";
-
-		// 	return $pdo;
-		// }
+		}
 	}
 ?>

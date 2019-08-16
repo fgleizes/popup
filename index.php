@@ -1,9 +1,10 @@
 <?php 
+	// require "classes/Configuration.class.php";
 	require "classes/Database.class.php";
 
 	session_start();
 
-	$photosParPage = 3; // nombre de photos à afficher par pages
+	$photosParPage = 6; // nombre de photos à afficher par pages
 	$database = new database();
 	$sqlPhotosTotales = "SELECT id FROM `Photos` WHERE `Photos`.`visibility` = 1 AND `Photos`.`publishDate` <= NOW()";
 	$photosTotales = sizeof($database->query($sqlPhotosTotales)); // nombre total de photos à afficher
