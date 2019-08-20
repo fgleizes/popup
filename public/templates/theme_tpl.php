@@ -7,8 +7,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- CSS perso -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-		<link rel="stylesheet" href="public/css/normalize.css">
-		<link rel="stylesheet" type="text/css" href="public/css/style.css">
+		<link rel="stylesheet" href="../css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
 	</head>
 	<body>
 		<header id="home-page">
@@ -28,7 +28,7 @@
 						<a href="public/src/logout.php"><i class="fas fa-search"></i></a>
 					</li> -->
 					<li>
-						<a href="public/src/user.php"><i class="fas fa-user-circle"></i></a>
+						<a href="../src/user.php"><i class="fas fa-user-circle"></i></a>
 					</li>
 				</ul>
 			</nav>
@@ -42,7 +42,7 @@
 						<a href="#"><i class="fas fa-layer-group"></i></a>
 					</li>
 					<li>
-						<a href="public/src/login.php"><i class="fas fa-plus-square"></i></a>
+						<a href="../src/login.php"><i class="fas fa-plus-square"></i></a>
 					</li>
 					<!-- <li>
 						<a href="#"><i class="fas fa-search"></i></a>
@@ -50,13 +50,13 @@
 				</ul>
 			</nav>
 			<div id="login-form-mobile">
-				<a href="public/src/login.php" class="button login-button">S'identifier</a>
-				<a href="public/src/signup.php" class="button signup-button">S'enregistrer</a>
+				<a href="../src/login.php" class="button login-button">S'identifier</a>
+				<a href="../src/signup.php" class="button signup-button">S'enregistrer</a>
 			</div>
 			<?php endif ?>
 			<nav id="nav-desktop">
 				<div id="nav-left">
-					<a href="index.php"><img src="public/images/popup.png" alt="Logo du site Popup!" title="Logo du site Popup!" id="logo-popup"></a>
+					<a href="../../index.php"><img src="../images/popup.png" alt="Logo du site Popup!" title="Logo du site Popup!" id="logo-popup"></a>
 				</div>
 				<div id="nav-center">
 					<div id="border-list-themes"></div>
@@ -64,7 +64,7 @@
 						<ul id="list-themes">
 							<?php foreach($categories as $category): ?>
 							<li class="theme">
-								<a href="public/src/theme.php?category_Id=<?= $category['id'] ?>"><?= $category['name'] ?></a>
+								<a href="../src/theme.php?category_Id=<?= $category['id'] ?>"><?= $category['name'] ?></a>
 							</li>
 							<?php endforeach; ?>
 						</ul>
@@ -79,28 +79,28 @@
 							<a class="button" href="#">Partager une photo</a>
 						</li>
 						<li>
-							<a href="public/src/logout.php"><i class="fas fa-bell"></i></a>
+							<a href="../src/logout.php"><i class="fas fa-bell"></i></a>
 						</li>
 						<li>
-							<a href="public/src/user.php"><i class="fas fa-user-circle"></i></a>
+							<a href="../src/user.php"><i class="fas fa-user-circle"></i></a>
 						</li>
 					<?php else : ?>
 						<li class="button-share-photo tablette">
 							<a href="#"><i class="fas fa-plus-square"></i></a>
 						</li>
 						<li class="button-share-photo desktop">
-							<a class="button" href="public/src/login.php">Partager une photo</a>
+							<a class="button" href="../src/login.php">Partager une photo</a>
 						</li>
 						<li>
-							<a href="public/src/login.php">S'identifier</a>
+							<a href="../src/login.php">S'identifier</a>
 						</li>
 						<li>
-							<a href="public/src/signup.php">S'enregistrer</a>
+							<a href="../src/signup.php">S'enregistrer</a>
 						</li>
 					<?php endif ?>
 				</ul>
 				<!-- <div id="nav-left">
-					<a href="index.php"><img src="public/images/popup.png" alt="Logo du site Popup!" title="Logo du site Popup!" id="logo-popup"></a>
+					<a href="index.php"><img src="../images/popup.png" alt="Logo du site Popup!" title="Logo du site Popup!" id="logo-popup"></a>
 					<form action="">
 						<button><i class="fas fa-search"></i></button>
 						<input type="search" placeholder="Rechercher une photo">
@@ -123,7 +123,7 @@
 		<main>
 			<?php if( array_key_exists("connected", $_SESSION) && $_SESSION['connected']): ?>
 			<section id="button-admin">
-				<a href="public/src/admin.php">Administration</a>
+				<a href="../src/admin.php">Administration</a>
 			</section>
 			<?php endif ?>
 
@@ -146,17 +146,17 @@
 
 					<?php foreach($photos as $photo): ?>
 					<div class="grid__item <?= $photo['category_Id'] ?>">
-						<a title="Voir la photo de <?= $photo['Firstname'] ?> <?= $photo['Lastname']?>" href="public/src/viewPhoto.php?photo_Id=<?= $photo['id'] ?>">
+						<a title="Voir la photo de <?= $photo['Firstname'] ?> <?= $photo['Lastname']?>" href="../src/viewPhoto.php?photo_Id=<?= $photo['id'] ?>">
 							<img 
 							sizes="(min-width: 992px) calc(calc(100vw - 5rem) / 3), (min-width: 768px) calc(calc(100vw - 4rem) / 2), 100vw" 
 							srcset="
-							files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['150w'] ?> 150w,
-							files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['300w'] ?> 300w,
-							files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['500w'] ?> 500w,
-							files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['768w'] ?> 768w,
-							files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['1024w'] ?> 1024w
+							../../files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['150w'] ?> 150w,
+							../../files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['300w'] ?> 300w,
+							../../files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['500w'] ?> 500w,
+							../../files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['768w'] ?> 768w,
+							../../files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['1024w'] ?> 1024w
 							"
-							src="files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['1024w'] ?>"
+							src="../../files/<?= $photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['1024w'] ?>"
 							alt="Photo gratuite partagée sur Popup!"
 							>
 						</a>
@@ -196,7 +196,7 @@
 				<!-- pagination has path -->
 				<?php if($pageCourante != $pagesTotales): ?>
 				<p class="pagination">
-					<a class="pagination__next" href="index.php?page=<?= $pageCourante+1 ?>">Next page</a>
+					<a class="pagination__next" href="theme.php?category_Id=<?= $category_Id ?>&page=<?= $pageCourante+1 ?>">Next page</a>
 				</p>
 				<?php endif; ?>
 			
@@ -206,9 +206,9 @@
 						if($i == $pageCourante){
 							echo $i;
 						} elseif($i == $pageCourante+1) {
-							echo '<a href="index.php?page=' . $i . '" class="pagination__next">' . $i . '</a> ';
+							echo '<a href="theme.php?page=' . $i . '" class="pagination__next">' . $i . '</a> ';
 						} else {
-							echo '<a href="index.php?page=' . $i . '">' . $i . '</a> ';
+							echo '<a href="theme.php?page=' . $i . '">' . $i . '</a> ';
 						}
 					}
 				?>
@@ -221,7 +221,7 @@
 						<div class="info-photo">
 							<div class="avatar">
 								<a href="#">
-									<img src="public/avatar/profile-fb-1520251127-bf82d47e3135.jpg" alt="Photo de profil de...">
+									<img src="../avatar/profile-fb-1520251127-bf82d47e3135.jpg" alt="Photo de profil de...">
 								</a>
 							</div>
 							<div class="author">
@@ -232,7 +232,7 @@
 						</div>
 						<div class="photo">
 							<a href="#">
-								<img src="public/images/xiyaan-maldives-L1TGflJrqTM-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
+								<img src="../images/xiyaan-maldives-L1TGflJrqTM-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
 							</a>
 						</div>
 						<div class="interaction-photo">
@@ -246,7 +246,7 @@
 						<div class="info-photo">
 							<div class="avatar">
 								<a href="#">
-									<img src="public/avatar/profile-1528743432375-fe0572215100.jpeg" alt="Photo de profil de...">
+									<img src="../avatar/profile-1528743432375-fe0572215100.jpeg" alt="Photo de profil de...">
 								</a>
 							</div>
 							<div class="author">
@@ -257,7 +257,7 @@
 						</div>
 						<div class="photo">
 							<a href="#">
-								<img src="public/images/daiga-ellaby-hZvx336dhAg-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
+								<img src="../images/daiga-ellaby-hZvx336dhAg-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
 							</a>
 						</div>
 						<div class="interaction-photo">
@@ -272,16 +272,16 @@
 
 			<!-- <section id="photos">
 				<div class="colonnes" id="colonne1">
-					<img src="public/images/lianhao-qu-1574692-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
-					<img src="public/images/analise-benevides-1573789-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
+					<img src="../images/lianhao-qu-1574692-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
+					<img src="../images/analise-benevides-1573789-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
 				</div>
 				<div class="colonnes" id="colonne2">
-					<img src="public/images/pawel-czerwinski-1574309-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
-					<img src="public/images/josh-hild-1574362-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
+					<img src="../images/pawel-czerwinski-1574309-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
+					<img src="../images/josh-hild-1574362-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
 				</div>
 				<div class="colonnes" id="colonne3">
-					<img src="public/images/simon-zhu-1574915-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
-					<img src="public/images/kelsey-curtis-1570051-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
+					<img src="../images/simon-zhu-1574915-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
+					<img src="../images/kelsey-curtis-1570051-unsplash.jpg" alt="Photo gratuite partagée sur Popup!">
 				</div>
 			</section> -->
 
@@ -302,7 +302,7 @@
 									<div id="container-upload-photo">
 										<label for="upload-photo">
 											<div id="box1-upload-photo">
-												<img src="public/images/1x.png" id="visuel">
+												<img src="../images/1x.png" id="visuel">
 												<div>
 													Déplacez vos photos ici :
 												</div>
@@ -351,10 +351,10 @@
 			</section>
 			<?php endif ?>
 		</main>
-		<script src="public/libs/jquery214.js"></script>
-		<script src="public/scripts/masonry.js"></script>
-		<script src="public/scripts/infinite-scroll.js"></script>
-		<script src="public/scripts/main.js"></script>
-		<script src="public/scripts/upload-photo.js"></script>
+		<script src="../libs/jquery214.js"></script>
+		<script src="../scripts/masonry.js"></script>
+		<script src="../scripts/infinite-scroll.js"></script>
+		<script src="../scripts/main.js"></script>
+		<script src="../scripts/upload-photo.js"></script>
 	</body>
 </html>

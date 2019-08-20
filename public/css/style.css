@@ -76,13 +76,13 @@ header#home-page
 header#home-page li
 {
 	list-style-type: none;
-    margin: 0 0.25rem;
+	/* margin: 0 1rem 0 0; */
 }
 header#home-page a, #presentation a
 {
 	text-decoration: none;
 	color: #999999;
-	transition: color .2s ease-in-out;
+	transition: color .2s ease-in-out, border .2s ease-in-out;
 }
 header#home-page nav a:hover, #presentation a:hover
 {
@@ -158,9 +158,9 @@ nav
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: justify;
+	/* -webkit-box-pack: justify;
 	-ms-flex-pack: justify;
-	justify-content: space-between;
+	justify-content: space-between; */
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
@@ -169,20 +169,22 @@ nav form:focus, nav input:focus, nav button:focus
 {
 	outline:none;
 }
-/* -------- NAV-LEFT; -------- */
-#nav-left 
+#nav-left, #nav-center, #nav-right
 {
-	min-width: 50%;
+	margin: 0 1rem;
 }
-#nav-left a
+/* -------- NAV-LEFT; -------- */
+/* #nav-left a
 {
 	display: flex;
-}
+} */
 #nav-left #logo-popup 
 {
 	width: 3rem;
+	/* margin: 0 1rem; */
+	display: block;
 }
-#nav-left form 
+/* #nav-left form 
 {
 	width: 91%;
 	height: 2.9rem;
@@ -221,41 +223,98 @@ nav form:focus, nav input:focus, nav button:focus
 	border: 0;
 	background-color: transparent;
 	color: rgba(17, 17, 17, 1);
-}
+} */
 /* -------- NAV-CENTER; -------- */
 #nav-center 
 {
-	min-width: 20%;
-	margin: 0 6% 0 0%;
+	/* min-width: 20%;
+	margin: 0 6% 0 0%; */
+	justify-content: flex-start;
+	margin-left: 0;
+	flex-grow: 1;
+	overflow: hidden;
+	position: relative;
 }
-#nav-center li:nth-child(2)
+#nav-center:after {
+	position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 80px;
+    height: 100%;
+    pointer-events: none;
+    content: "";
+    background: linear-gradient(90deg,hsla(0,0%,100%,0) 0,#fff 95%,#fff);
+}
+#border-list-themes{
+	background-color: #ddd;
+    width: 1px;
+    height: 1.375rem;
+    flex-shrink: 0;
+}
+#container-list-themes {
+	height: calc(100% + 1rem);
+    overflow-x: scroll;
+    white-space: nowrap;
+    margin: 0;
+    position: relative;
+    top: 7px;
+}
+#list-themes {
+	padding-left: 1rem;
+}
+#list-themes .theme{
+	margin-right: 1rem;
+}
+#list-themes .theme:last-child{
+	padding-right: 3rem;
+}
+/* #nav-center li:nth-child(2)
 {
 	margin: 0 13%;
-	/* margin: 0 1rem; */
-}
+} */
+/* #list-themes{
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 60px;
+    background: white;
+} */
+/* .theme{
+	margin: 0;
+} */
 /* -------- NAV-RIGHT; -------- */
-#nav-right 
+/* #nav-right 
 {
 	min-width: 15%;
 	margin: 0;
-}
+} */
 #nav-right .button
 {
-	padding: .85rem 1rem;
+	padding: .95rem 1rem;
 	border-color: rgba(153, 153, 153, 1);
 }
 #nav-right .button:hover 
 {
 	border-color: rgba(17, 17, 17, 1);
 }
-#nav-right li:last-child
+/* #nav-right li:last-child
 {
 	margin: 0 0 0 .25rem;
+} */
+#nav-right li {
+	margin-right: 1rem;
 }
 #nav-right li a i 
 {
-	font-size: 1.5rem;
-	/* font-size: 1.8rem; */
+	/* font-size: 1.5rem; */
+	font-size: 2rem;
+    display: block;
+}
+#nav-right li:last-child
+{
+	margin: 0;
 }
 #nav-right li:last-child a i 
 {
@@ -341,6 +400,14 @@ nav form:focus, nav input:focus, nav button:focus
 #recherche form:focus, #recherche input:focus, #recherche  button:focus 
 {
 	outline:none;
+}
+
+/* -------- MAIN: SECTION BUTTON ADMIN; -------- */
+#button-admin {
+	background: yellow;
+    text-align: center;
+    padding: .5rem 1rem;
+    margin-bottom: 1rem;
 }
 
 /* -------- MAIN: PHOTOS MOBILE; -------- */
@@ -443,11 +510,21 @@ nav form:focus, nav input:focus, nav button:focus
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
-		-webkit-box-pack: justify;
+		height: 5rem;
+		/* -webkit-box-pack: justify;
 		-ms-flex-pack: justify;
-		justify-content: space-between;
-		padding: 1rem;
+		justify-content: space-between; */
+		/* display: grid;
+		grid-template-columns: 5rem 2fr minmax(min-content, auto);
+		grid-gap: .5rem;
+		padding: 1rem 0; */
 	}
+	/* #nav-right {
+		height: 3rem;
+		position: absolute;
+		right: 0;
+		top: 1rem;
+	} */
 	#nav-desktop .button-share-photo.desktop
 	{
 		display: none;
@@ -498,11 +575,11 @@ nav form:focus, nav input:focus, nav button:focus
 	}
 	#nav-right 
 	{
-		min-width: 19%;
+		/* min-width: 19%; */
 	}
 	#nav-center 
 	{
-		min-width: 14%;
+		/* min-width: 14%; */
 	}
 	#nav-right li a i 
 	{

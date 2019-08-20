@@ -1,6 +1,5 @@
-<?php 
-	// require "classes/Configuration.class.php";
-	require "classes/Database.class.php";
+<?php   
+    require "../../classes/Database.class.php";
 
 	session_start();
 
@@ -10,10 +9,11 @@
 	$categories = $database->query($sqlCategories);
 	/* ****************** HEADER ****************** */
 
+    $category_Id = $_GET['category_Id'];
 
-	$photosParPage = 6; // nombre de photos à afficher par pages
-	$sqlPhotosTotales = "SELECT id FROM `Photos` WHERE `Photos`.`visibility` = 1 AND `Photos`.`publishDate` <= NOW()";
-	$photosTotales = sizeof($database->query($sqlPhotosTotales)); // nombre total de photos à afficher
+	$photosParPage = 3; // nombre de photos à afficher par pages
+	$sqlPhotosTotales = "SELECT id FROM `Photos` WHERE `Photos`.`visibility` = 1 AND `Photos`.`publishDate` <= NOW() AND `Photos`.`category_Id` = ?";
+	$photosTotales = sizeof($database->query($sqlPhotosTotales, [$category_Id])); // nombre total de photos à afficher
 	$pagesTotales = ceil($photosTotales / $photosParPage); // nombre total de pages
 	
 	if ( isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0 ) {
@@ -33,11 +33,15 @@
 		FROM `Photos`
 		JOIN Users ON Users.Id = Photos.user_Id
 		JOIN Thumbnails ON Photos.Id = Thumbnails.photo_Id
-		WHERE `Photos`.`visibility` = 1 AND `Photos`.`publishDate` <= NOW()
+		JOIN Category ON Photos.category_Id = Category.id
+		WHERE `Photos`.`visibility` = 1 AND `Photos`.`publishDate` <= NOW() AND `Photos`.`category_Id` = ?
 		ORDER BY `Photos`.`publishDate` DESC
 		LIMIT $depart,$photosParPage"
 	;
-	$photos = $database->query($sqlPhotos);
-		
-	include "public/templates/index_tpl.php";
+    $photos = $database->query($sqlPhotos, [$category_Id]);
+    
+    // echo "<pre>";
+    // var_dump($_SERVER);
+    // var_dump($_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
+    include "../templates/theme_tpl.php";
 ?>

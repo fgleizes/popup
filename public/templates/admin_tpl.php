@@ -42,7 +42,7 @@
                         <li><?= $photo["creationTimestamp"] ?></li>
                         <li><?= $photo["Firstname"] ?> <?= $photo["Lastname"] ?></li>
                         <li><?= $photo["user_Id"] ?></li>
-                        <li><a href="admin_validPhoto.php?photo_id=<?= $photo["id"] ?>" class="button" title="Valider la photo">Valider</a ></li>
+                        <li><a href="admin_validPhoto.php?photo_id=<?= $photo["id"] ?>" class="button" title="Valider la photo">Consulter</a ></li>
                     </ul>
                 <?php endforeach; ?>
             </section>
