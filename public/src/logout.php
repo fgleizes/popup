@@ -1,5 +1,6 @@
 <?php  
-	session_start();
-	session_destroy();
-	header("location: ../../index.php");
+	require "../../classes/User.class.php";
+
+	$user = new user();
+	$user->logoutUser();
 ?>

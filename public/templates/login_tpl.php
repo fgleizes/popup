@@ -18,11 +18,11 @@
 				<h2>Connectez-vous</h1>
 				<div class="form-group">
 					<label for="usermail">Adresse mail / nom d'utilisateur</label>
-					<input type="text" name="mail" required class="form-control" >
+					<input type="text" name="usermail" id="usermail" required class="form-control" >
 				</div>
 				<div class="form-group">
 					<label for="userpassword">Mot de passe<span><a href="#">(Mot de passe oublié ?)</a></span></label>
-					<input type="password" name="password" required class="form-control">
+					<input type="password" name="userpassword" id="userpassword" required class="form-control">
 				</div>
 				<div class="form-group">
 					<input type="submit" value="Connexion">
