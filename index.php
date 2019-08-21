@@ -1,15 +1,18 @@
 <?php 
 	// require "classes/Configuration.class.php";
-	require "classes/Database.class.php";
+	// require "classes/Database.class.php";
 
-	session_start();
+	// session_start();
 
 	/* ****************** HEADER ****************** */
-	$sqlCategories = "SELECT * FROM `Category` WHERE id != 1";
-	$database = new Database;
-	$categories = $database->query($sqlCategories);
+	// $sqlCategories = "SELECT * FROM `Category` WHERE id != 1";
+	// $database = new Database;
+	// $categories = $database->query($sqlCategories);
 	/* ****************** HEADER ****************** */
 
+	include "public/src/header.php";
+
+	// $database = new Database;
 
 	$photosParPage = 6; // nombre de photos à afficher par pages
 	$sqlPhotosTotales = "SELECT id FROM `Photos` WHERE `Photos`.`visibility` = 1 AND `Photos`.`publishDate` <= NOW()";
@@ -40,4 +43,5 @@
 	$photos = $database->query($sqlPhotos);
 		
 	include "public/templates/index_tpl.php";
+	include "public/src/footer.php";
 ?>
