@@ -15,7 +15,7 @@
 		<div class="login-form">
 			<form action="login.php" method="post">
 				<h2><img src="../images/popup.png" alt="Logo du site Popup!" title="Logo du site Popup!" id="logo-popup"></h2>
-				<h2>Connectez-vous</h1>
+				<h2>Connectez-vous :</h1>
 				<div class="form-group">
 					<label for="usermail">Adresse mail / nom d'utilisateur</label>
 					<input type="text" name="usermail" id="usermail" required class="form-control" >

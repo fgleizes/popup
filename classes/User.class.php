@@ -80,6 +80,7 @@
 				$password = $user["userpassword"];
 
 				if( !empty($usermail) 
+				&& !empty($username) 
 				&& !empty($password) 
 				){
 					$sql = "SELECT * FROM `Users` WHERE Usermail = ? OR Username = ?";
@@ -116,6 +117,7 @@
 
 		public function logoutUser(){
 			session_start();
+			$_SESSION="";
 			session_destroy();
 			header("location: ../../index.php");
 		}

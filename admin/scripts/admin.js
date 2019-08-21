@@ -1,0 +1,37 @@
+let publishNow = document.querySelector("#now")
+let planifier = document.querySelector("#planifier")
+let divPublishDate = document.querySelector("#divPublishDate")
+let publishDate = document.querySelector("#publishDate")
+// let publishHours = document.querySelector("#publishHours")
+// let publishMinutes = document.querySelector("#publishMinutes")
+
+publishNow.checked = true
+
+planifier.addEventListener("change", function () {
+    divPublishDate.classList.add("show")
+    divPublishDate.classList.remove("hide")
+    publishDate.required = true
+})
+
+publishNow.addEventListener("change", function () {
+    divPublishDate.classList.remove("show");
+    divPublishDate.classList.add("hide");
+    publishDate.required = false
+    publishDate.value = ""
+    planifier.checked = false
+})
+
+publishDate.addEventListener("click", function () {
+    // planifier.checked = true
+    // publishDate.required = true
+    // publishNow.checked = false
+})
+
+let validPhoto = document.querySelector("#valid-photo")
+let validPhotoForm = document.querySelector("#valid-photo form")
+
+validPhotoForm.addEventListener("submit", function () {
+    let loader = document.createElement("div")
+    loader.className = "loader"
+    validPhoto.appendChild(loader)
+})
