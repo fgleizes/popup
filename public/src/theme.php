@@ -1,13 +1,15 @@
 <?php   
-    require "../../classes/Database.class.php";
+    // require "../../classes/Database.class.php";
 
-	session_start();
+	// session_start();
 
-	/* ****************** HEADER ****************** */
-	$sqlCategories = "SELECT * FROM `Category` WHERE id != 1";
-	$database = new Database;
-	$categories = $database->query($sqlCategories);
-	/* ****************** HEADER ****************** */
+	// /* ****************** HEADER ****************** */
+	// $sqlCategories = "SELECT * FROM `Category` WHERE id != 1";
+	// $database = new Database;
+	// $categories = $database->query($sqlCategories);
+	// /* ****************** HEADER ****************** */
+
+	include "header.php";
 
     $category_Id = $_GET['category_Id'];
 
@@ -42,6 +44,7 @@
     
     // echo "<pre>";
     // var_dump($_SERVER);
-    // var_dump($_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
+	
     include "../templates/theme_tpl.php";
+	include "footer.php";
 ?>
