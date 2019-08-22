@@ -29,9 +29,9 @@ body
 .hide {
 	display: none;
 }
-.hide-scrollbar {
+/* .hide-scrollbar {
 	overflow-y: hidden;
-}
+} */
 .show {
 	display: block;
 }
@@ -152,7 +152,7 @@ header nav li#en-cours a {
 .nav-mobile ul li a
 {
 	width: 100%;
-	padding: 1.25rem 0;
+	padding: 1.75rem 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -261,9 +261,10 @@ nav form:focus, nav input:focus, nav button:focus
 {
 	/* min-width: 20%;
 	margin: 0 6% 0 0%; */
-	justify-content: flex-start;
+
+	/* justify-content: flex-start;
 	margin-left: 0;
-	flex-grow: 1;
+	flex-grow: 1; */
 	overflow: hidden;
 	position: relative;
 }
@@ -271,7 +272,7 @@ nav form:focus, nav input:focus, nav button:focus
 	position: absolute;
     top: 0;
     right: 0;
-    display: block;
+    /* display: block; */
     width: 80px;
     height: 100%;
     pointer-events: none;
@@ -285,12 +286,12 @@ nav form:focus, nav input:focus, nav button:focus
     flex-shrink: 0;
 }
 #container-list-themes {
-	height: calc(100% + 1rem);
+	height: calc(100% + 2rem);
     overflow-x: scroll;
     white-space: nowrap;
-    margin: 0;
+    /* margin: 0;
     position: relative;
-    top: 7px;
+    top: 7px; */
 }
 #list-themes {
 	padding-left: 1rem;
@@ -360,11 +361,11 @@ nav form:focus, nav input:focus, nav button:focus
 /* -------- MAIN: PRESENTATION; -------- */
 #presentation 
 {
-	background-image: url("../images/kelsey-curtis-1570051-unsplash.jpg");
+	background-image: url(../images/kelsey-curtis-1570051-unsplash.jpg);
 	background-size: cover;
-	background-position: center; 
-	display: -webkit-box; 
-	display: -ms-flexbox; 
+	background-position: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
@@ -372,7 +373,8 @@ nav form:focus, nav input:focus, nav button:focus
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	margin-bottom: 3rem;
+	margin-bottom: 5rem;
+	height: 70vh;
 }
 
 /* -------- MAIN: PRESENTATION: FORMULAIRE RECHERCHE; -------- */
@@ -380,21 +382,22 @@ nav form:focus, nav input:focus, nav button:focus
 {
 	color: rgba(255, 255, 255, 1);
 	text-shadow: 2px 2px 4px rgba(0,0,0,.5);
-	width: 100%;
+	/* width: 100%; */
 	font-size: 15px;
-	padding: 6.25rem 1rem;
+	/* padding: 6.25rem 1rem; */
 }
 #recherche h1
 {
 	font-size: 1.75em;
-    margin: 0;
+	margin: 0 0 1rem;
 }
 #recherche h2
 {
 	font-size: 1rem;
-	margin: 0.3rem 0 1rem 0;
+	margin: 0;
+	font-weight: 500;
 }
-#recherche a
+/* #recherche a
 {
 	text-shadow: 2px 2px 4px rgba(0,0,0,.1)
 }
@@ -435,7 +438,7 @@ nav form:focus, nav input:focus, nav button:focus
 #recherche form:focus, #recherche input:focus, #recherche  button:focus 
 {
 	outline:none;
-}
+} */
 
 /* -------- MAIN: SECTION BUTTON ADMIN; -------- */
 #button-admin {
@@ -556,7 +559,7 @@ nav form:focus, nav input:focus, nav button:focus
 	opacity: 0;
 }
 .grid__item {
-	margin-bottom: 1rem;
+	margin-bottom: 5rem;
 	float: left;
 }
 .grid__item img{
@@ -690,13 +693,13 @@ nav form:focus, nav input:focus, nav button:focus
 .modal-wrapper {
 	width: 100%;
 	height: 100%;
-	/* overflow: hidden; */
+	/* overflow: hidden;
 	background-color: rgba(255, 255, 255, 1);
 	border-radius: 4px;
 	box-shadow: 0 8px 16px rgba(0,0,0,.15);
-	/* min-width: 0; */
+	min-width: 0;
 	cursor: default;
-	pointer-events: auto;
+	pointer-events: auto; */
 	animation: slideFromTop .5s both;
 }
 .modal[aria-hidden="true"] {
@@ -741,17 +744,17 @@ nav form:focus, nav input:focus, nav button:focus
 #close-share-photo:hover {
 	color: rgba(153, 153, 153, 1);
 }
-/* #container-share-photo {
+#container-share-photo {
     width: 100%;
     height: 100%;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 4px;
     box-shadow: 0 8px 16px rgba(0,0,0,.15);
-    min-width: 0;
+    /* min-width: 0; */
     cursor: default;
     pointer-events: auto;
-} */
+}
 #overflow-share-photo-form {
 	overflow: auto;
     height: 100%;
@@ -768,7 +771,7 @@ nav form:focus, nav input:focus, nav button:focus
 /******** HEADER DU MODAL ********/
 #header-share-photo-form {
 	padding: 1rem;
-	min-height: 2rem;
+	min-height: 3.5rem;
     display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -840,8 +843,147 @@ nav form:focus, nav input:focus, nav button:focus
 	font-size: 12px;
 	color: #999;
 }
-/******** CORPS DU MODAL / 2ème PARTIE : PREVIEW IMAGE CHARGEE ********/
+/***** APRES VALIDATION DU FORMULAIRE *****/
+#container-confirm-share-photo {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
+/******** CORPS DU MODAL / 2ème PARTIE : PREVIEW IMAGE CHARGEE ********/
+#preview {
+	/*display: flex;*/
+	/*justify-content: space-between;
+	align-self: center;*/
+	/*max-width: 990px;*/
+	width: 100%;
+	font-size: 12px;
+	/*margin-top: auto;*/
+	margin-top: 1rem;
+	margin-bottom: 0;
+}
+
+#preview .list {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	list-style-type: disc;
+	list-style-position: inside;
+	display: flex;
+	justify-content: space-between;
+}
+
+#preview .list .colonne {
+	/* width: 32.33%; */
+	width: 100%;
+	margin-right: 1rem;
+}
+
+#preview .list .colonne .visu {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+
+#preview .list .colonne .visu .canvas {
+	/* position: absolute;
+	right: 0;
+	width: 100%;
+	height: 100%; */
+	-webkit-transition: width 1.3s ease-in-out;
+	/* Safari prior 6.1 */
+	transition: width 1.3s ease-in-out;
+}
+#preview .list .colonne .visu .container-buttons {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+#preview .list .colonne .visu .container-buttons .position-buttons {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-start;
+	padding: .75rem;
+	/* opacity: 0; */
+	transition: opacity .1s ease-in-out;
+}
+
+#preview .list .colonne .visu:hover .container-buttons .position-buttons {
+	opacity: 1;
+}
+
+#preview .list .colonne .visu .container-buttons .position-buttons .infos-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, .8);
+	color: rgba(255, 255, 255, .9);
+	border-radius: 3px;
+	padding-left: .5rem;
+	padding-right: .5rem;
+	margin-right: .3rem;
+	/* display: none; */
+	opacity: 0;
+	transition: opacity .08s ease-in-out;
+
+}
+
+#preview .list .colonne .visu .container-buttons .position-buttons .remove-upload-button {
+	/*position: absolute;
+	top: 8px;
+	right: 8px;*/
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, .5);
+	color: rgba(255, 255, 255, .8);
+	/*-moz-box-shadow: 0px 0px 2px 1px #656565;
+	-webkit-box-shadow: 0px 0px 2px 1px #656565;
+	-o-box-shadow: 0px 0px 2px 1px #656565;
+	box-shadow: 0px 0px 2px 1px #656565;*/
+	font-size: 1rem;
+	width: 1.8rem;
+	height: 1.8rem;
+	border: none;
+	cursor: pointer;
+	border-radius: 50%;
+	transition: background-color .1s ease-in-out, color .1s ease-in-out;
+}
+
+#preview .list .colonne .visu .container-buttons .position-buttons .remove-upload-button:hover {
+	background-color: rgba(0, 0, 0, .8);
+	color: rgba(255, 255, 255, .9);
+}
+
+#preview .list .colonne .visu .container-buttons .position-buttons .remove-upload-button:hover + .infos-buttons {
+	opacity: 1;
+}
+
+/* #preview .list .visu:hover .infos-buttons {
+	display: flex
+} */
+
+/* .position-buttons .remove-upload-button:focus,
+.position-buttons .remove-upload-button i:focus {
+	outline: none;
+} */
+
+#preview .list .visu p {
+	text-align: center;
+	margin: 0;
+	border: solid #d1d1d1 1px;
+}
 
 /******** FOOTER DU MODAL ********/
 #footer-share-photo-form {
@@ -1156,16 +1298,20 @@ section#admin ul li:last-child a:focus {
 
 	/* ----- MAIN -> PRESENTATION ----- */
 	#presentation {
-		height: 90vh;
-		margin: 0;
+		/* height: 90vh; */
+		margin-bottom: 1rem;
 	}
-	#recherche {
+	/* #recherche {
 		width: 41rem;
 		padding: 0;
+	} */
+	#recherche h1 {
+		font-size: 2rem;
+		/* margin: 1rem 0; */
 	}
 	#recherche h2 {
 		font-size: 1.5rem;
-		margin: 1rem 0;
+		/* margin: 1rem 0; */
 	}
 
 
@@ -1186,6 +1332,9 @@ section#admin ul li:last-child a:focus {
 	} */
 
 /* ----- MAIN -> GALLERY PHOTOS ----- */
+	#gallery {
+		margin: 0 4rem;
+	}
   /***** PLUGIN JQUERY: MASONRY *****/
   /* 2 columns for larger screens */
 	.grid { margin-left: 1rem }
@@ -1193,15 +1342,17 @@ section#admin ul li:last-child a:focus {
 	.grid__col-sizer, 
 	.grid__item { width: calc(50% - 1rem); }
 
+	.grid__item { margin-bottom: 1rem; }
+
 /* ----- MODAL -> SHARE PHOTOS ----- */
 	.modal-wrapper {
 		width: calc(100vw - 7.5rem);
 		height: calc(100vh - 7.5rem);
 	}
   /***** HEADER MODAL *****/
-	/* #header-share-photo-form {
-		padding: 0.5rem 0.75rem 0.625rem 1rem;
-	} */
+	#header-share-photo-form {
+		min-height: 2rem;
+	}
 	#header-share-photo-form .upload-restant {
 		display: block;
 		font-size: 14px;
@@ -1219,6 +1370,9 @@ section#admin ul li:last-child a:focus {
   /***** BODY MODAL *****/
 	#box-upload-photo .upload-restant {
 		display: none;
+	}
+	#preview .list .visu .position-buttons {
+		opacity: 0;
 	}
   /***** FOOTER MODAL *****/
 	#footer-share-photo-form {
@@ -1260,11 +1414,11 @@ section#admin ul li:last-child a:focus {
 	} */
 	#nav-right li a i 
 	{
-		font-size: 1.8rem;
+		font-size: 2.5rem;
 	}
 	#nav-right li:last-child a i 
 	{
-		font-size: 2.6rem;
+		font-size: 3rem;
 	}
 /* ----- ???????????????? ----- */
 	.colonnes 

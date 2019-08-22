@@ -1,15 +1,15 @@
 <main>
-	<!-- <section id="presentation">
+	<section id="presentation">
 		<div id="recherche">
 			<h1>Popup!</h1>
 			<h2>Partage de photos, gratuites, et socialement connectées:</h2>
-			<form action="">
+			<!-- <form action="">
 				<button><i class="fas fa-search"></i></button>
 				<input type="search" placeholder="Rechercher une photo">
 			</form>
-			<p>Les recherches du moment: <a href="#">fleurs</a> <a href="#">fonds d'écran</a> <a href="#">arrière-plans</a> <a href="#">triste</a> <a href="#">amour</a></p>
+			<p>Les recherches du moment: <a href="#">fleurs</a> <a href="#">fonds d'écran</a> <a href="#">arrière-plans</a> <a href="#">triste</a> <a href="#">amour</a></p> -->
 		</div>
-	</section> -->
+	</section>
 
 	<section id="gallery">
 		<div class="grid are-images-unloaded">
@@ -64,7 +64,7 @@
 		</p>
 		<?php endif; ?>
 
-		<div class="pagination">
+		<!-- <div class="pagination">
 		<?php
 		for ($i = 1; $i <= $pagesTotales; $i++) {
 			if ($i == $pageCourante) {
@@ -76,7 +76,7 @@
 			}
 		}
 		?>
-		</div>
+		</div> -->
 	</section>
 
 	<?php if (array_key_exists("connected", $_SESSION) && $_SESSION['connected']) : ?>
@@ -125,37 +125,37 @@
 		</button>
 		<div class="modal-wrapper js-modal-stop">
 			<!-- <div id="position-share-photo"> -->
-			<!-- <div id="container-share-photo"> -->
-			<div id="overflow-share-photo-form">
-				<div id="container-share-photo-form">
-					<div id="header-share-photo-form">
-						<h4>Publiez vos photos sur Popup!</h4>
-						<p class="upload-restant">Il vous reste <span class="nombre-upload">10</span> téléchargements.</p>
-					</div>
-					<form id="share-photo-form">
-						<div id="body-share-photo-form">
-							<label for="upload-photo">
-								<div id="box-upload-photo">
-									<img src="public/images/1x.png" id="image-upload">
-									<p>Déplacez vos photos ici :</p>
-									<p class="upload-restant">Il vous reste <span class="nombre-upload">10</span> téléchargements.</p>
-								</div>
-							</label>
-							<input type="file" id="upload-photo" accept="image/jpeg" multiple>
+			<div id="container-share-photo">
+				<div id="overflow-share-photo-form">
+					<div id="container-share-photo-form">
+						<div id="header-share-photo-form">
+							<h4>Publiez vos photos sur Popup!</h4>
+							<p class="upload-restant">Il vous reste <span class="nombre-upload">10</span> téléchargements.</p>
 						</div>
-						<div id="footer-share-photo-form">
-							<div id="footer-share-photo-form-buttons">
-								<!-- <input type="reset" value="Annuler" class="button" id="cancel-upload-photo"> -->
-								<button type="button" class="button white-button js-modal-close" id="cancel-upload-photo">Annuler</button>
-								<!-- <input type="submit" value="Publier sur Popup!" class="button" id="valid-upload-photo" disabled> -->
-								<button type="submit" class="button" id="valid-upload-photo" disabled>Publier sur Popup!</button>
+						<form id="share-photo-form">
+							<div id="body-share-photo-form">
+								<label for="upload-photo">
+									<div id="box-upload-photo">
+										<img src="public/images/1x.png" id="image-upload">
+										<p>Déplacez vos photos ici :</p>
+										<p class="upload-restant">Il vous reste <span class="nombre-upload">10</span> téléchargements.</p>
+									</div>
+								</label>
+								<input type="file" id="upload-photo" accept="image/jpeg" multiple>
 							</div>
-							<a class="_22m_Y" target="_blank" href="/license">Lire la licence de Popup!</a>
-						</div>
-					</form>
+							<div id="footer-share-photo-form">
+								<div id="footer-share-photo-form-buttons">
+									<!-- <input type="reset" value="Annuler" class="button" id="cancel-upload-photo"> -->
+									<button type="button" class="button white-button js-modal-close" id="cancel-upload-photo">Annuler</button>
+									<!-- <input type="submit" value="Publier sur Popup!" class="button" id="valid-upload-photo" disabled> -->
+									<button type="submit" class="button black-button" id="valid-upload-photo" disabled>Publier sur Popup!</button>
+								</div>
+								<a class="_22m_Y" target="_blank" href="/license">Lire la licence de Popup!</a>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
-			<!-- </div> -->
 			<!-- </div> -->
 		</div>
 	</aside>
