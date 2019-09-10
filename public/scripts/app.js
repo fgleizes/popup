@@ -1,3 +1,34 @@
+/***********************************************************/
+/********************* VERSION MOBILE **********************/
+/****************** AFFICHAGE DES THEMES *******************/
+/***********************************************************/
+let categoriesIsOpen = false
+
+const toggleCategories = function (e) {
+    e.preventDefault()
+    if (categoriesIsOpen) {
+        document.querySelector('#nav-mobile .container-list-themes').style.display = null
+        document.querySelector('.nav-mobile').style.height = "5rem"
+        document.querySelector('header').style.marginTop = "5rem"
+        
+        categoriesIsOpen = false
+    } else {
+        document.querySelector('#nav-mobile .container-list-themes').style.display = "block"
+        document.querySelector('.nav-mobile').style.height = "9rem"
+        document.querySelector('header').style.marginTop = "9rem"
+        categoriesIsOpen = true
+    }
+}
+
+document.querySelectorAll('.js-toggle-categories').forEach(a => {
+    a.addEventListener('click', toggleCategories)
+})
+
+
+/***********************************************************/
+/********************* TOUTES VERSIONS *********************/
+/********************** MODAL UPLOAD ***********************/
+/***********************************************************/
 let modal = null
 const focusableSelector = "button:enabled, a, textarea, select, input"
 let focusableElements = []
@@ -24,6 +55,7 @@ const showModal = function (modal) {
     modal.addEventListener('click', closeModal)
     modal.querySelectorAll('.js-modal-close').forEach(button => button.addEventListener('click', closeModal))
     modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
+    upload.addEventListener("change", handleFiles, false)
     // scrollPosition = window.scrollY
     // console.log(scrollY)
     // console.log(scrollPosition)
@@ -145,62 +177,65 @@ function removeFileAtRefresh(file) {
 }
 
 /*********************************************************************/
-/******* DRAG AND DROP SUR LE MODAL (SECTION id="share-photo") *******/
+/******* DRAG AND DROP SUR LE MODAL (ASIDE id="#modal-share-photo") *******/
 /*********************************************************************/
 
-// let dropbox = sharePhoto;
+// let dropbox = document.querySelector("#modal-share-photos")
+// let dropbox = document.querySelector(".modal-wrapper")
 // let containerForm = document.querySelector("#container-share-photo-form")
+let containerSharePhotoForm = document.querySelector("#container-share-photo-form")
 
-// let infoDragAndDrop = document.createElement("div")
-// infoDragAndDrop.id = "dragAndDrop"
+let dragAndDrop = document.createElement("div")
+dragAndDrop.id = "dragAndDrop"
 
-// let h1 = document.createElement("h1")
-// h1.textContent = "Déposez votre photo ici."
-// infoDragAndDrop.appendChild(h1)
+let infoDragAndDrop = document.createElement("h1")
+infoDragAndDrop.textContent = "Déposez votre photo ici."
+dragAndDrop.appendChild(infoDragAndDrop)
 
-// let drag = document.createElement("div")
-// infoDragAndDrop.appendChild(drag)
+let drag = document.createElement("div")
+dragAndDrop.appendChild(drag)
 
-// dropbox.addEventListener("dragenter", dragenter, false);
-// dropbox.addEventListener("dragover", dragover, false);
-// dropbox.addEventListener("drop", drop, false);
-// drag.addEventListener("dragleave", dragleave, false);
+containerSharePhotoForm.addEventListener("dragenter", dragenter, false)
+containerSharePhotoForm.addEventListener("dragover", dragover, false)
+containerSharePhotoForm.addEventListener("drop", drop, false)
+drag.addEventListener("dragleave", dragleave, false)
 
-// function dragenter(e) {
-//     e.stopPropagation();
-//     e.preventDefault();
-//     containerForm.appendChild(infoDragAndDrop)
-// }
+function dragenter(e) {
+    e.stopPropagation()
+    e.preventDefault()
+    containerSharePhotoForm.appendChild(dragAndDrop)
+}
 
-// function dragover(e) {
-//     e.stopPropagation();
-//     e.preventDefault();
-// }
+function dragover(e) {
+    e.stopPropagation()
+    e.preventDefault()
+}
 
-// function dragleave(e) {
-//     e.stopPropagation();
-//     e.preventDefault();
-//     infoDragAndDrop.remove()
-// }
+function dragleave(e) {
+    e.stopPropagation()
+    e.preventDefault()
+    dragAndDrop.remove()
+}
 
-// function drop(e) {
-//     e.stopPropagation();
-//     e.preventDefault();
-//     infoDragAndDrop.remove()
+function drop(e) {
+    e.stopPropagation()
+    e.preventDefault()
+    dragAndDrop.remove()
 
-//     let dt = e.dataTransfer;
-//     let files = dt.files;
+    let dt = e.dataTransfer
+    let files = dt.files
 
-//     handleFiles(files);
-// }
+    handleFiles(files)
+}
 
 /***********************************************************/
 /********************* UPLOAD D'IMAGES *********************/
 /***********************************************************/
 
 /****************** DECLARATION DES VARIABLES GLOBALES, ET INITIALISATION DU DOM ******************/
-window.URL = window.URL || window.webkitURL;
+window.URL = window.URL || window.webkitURL
 
+// let containerSharePhotoForm = document.querySelector("#container-share-photo-form")
 let containerUploadPhoto = document.querySelector("#body-share-photo-form")
 let labelUploadPhoto = document.querySelector("#body-share-photo-form label")
 let nombreRestantUpload = document.querySelectorAll(".nombre-upload")
@@ -210,7 +245,7 @@ let containerConfirmSharePhoto = document.createElement("div")
 containerConfirmSharePhoto.id = "container-confirm-share-photo"
 
 let upload = document.querySelector("#upload-photo")
-upload.addEventListener("change", handleFiles, false)
+// upload.addEventListener("change", handleFiles, false)
 
 let preview = document.createElement("div")
 preview.id = "preview"
@@ -576,11 +611,11 @@ function removeDisplay() {
 
 function returnFileSize(number) {
     if (number < 1024) {
-        return number + ' octets';
+        return number + ' octets'
     } else if (number >= 1024 && number < 1048576) {
-        return (number / 1024).toFixed(1) + ' Ko';
+        return (number / 1024).toFixed(1) + ' Ko'
     } else if (number >= 1048576) {
-        return (number / 1048576).toFixed(1) + ' Mo';
+        return (number / 1048576).toFixed(1) + ' Mo'
     }
 }
 
@@ -589,14 +624,14 @@ function createThrobber(img) {
     canvas.className = "canvas"
     img.parentNode.appendChild(canvas)
 
-    let ctx = canvas.getContext('2d');
-    canvas.style.position = "absolute";
-    canvas.style.right = "0";
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
+    let ctx = canvas.getContext('2d')
+    canvas.style.position = "absolute"
+    canvas.style.right = "0"
+    canvas.style.width = "100%"
+    canvas.style.height = "100%"
 
-    ctx.fillStyle = 'rgba( 255, 255, 255, 0.6 )';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba( 255, 255, 255, 0.6 )'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     return canvas
 }
@@ -673,13 +708,13 @@ function prepareToSendDb() {
 }
 
 function sendToDb(informations) {
-    let json_upload = "json_upload=" + JSON.stringify(informations);
+    let json_upload = "json_upload=" + JSON.stringify(informations)
 
-    let uri = "public/src/upload_photo/add_photo.php";
+    let uri = "public/src/upload_photo/add_photo.php"
     let xhr = new XMLHttpRequest()
 
     xhr.open("POST", uri, true)
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
 
     xhr.onreadystatechange = function () {
 
@@ -688,17 +723,17 @@ function sendToDb(informations) {
             xhr.responseText ? alert(xhr.responseText) : null
         }
 
-        // On vérifie si toutes les XHR envoyées sont terminées pour vider le tableau des XHR envoyées
+        // On vérifie si toutes les XHR envoyées sont terminées pour vider le tableau des requêtes en cours
         if (!xhrStatus.filter(x => x.readyState != 4).length && !xhrStatus.filter(x => x.status != 200).length) {
             fileList = []
             xhrStatus = []
             setTimeout(() => {
                 confirmSharePhoto()
-            }, 2000);
+            }, 2500)
         }
     };
 
-    xhrStatus.push(xhr) // On pousse chaque requête envoyée dans un tableau des requêtes en cours envoyées
+    xhrStatus.push(xhr) // On pousse chaque requête envoyée dans un tableau des requêtes en cours
     xhr.send(json_upload)
 }
 
@@ -708,6 +743,6 @@ function confirmSharePhoto() {
         "<p>Votre photo est en cours de révision par la communauté et sera bientôt partagée sous la licence Popup.</p>" +
         "<p>Au nom de tous, nous vous remercions</p>" +
         "<p>" +
-        "<a href='#' class='button'>Voir votre profil <i class='fas fa-long-arrow-alt-right'></i></a>" +
+            "<a href='public/src/user.php' class='button white-button'>Voir votre profil <i class='fas fa-long-arrow-alt-right'></i></a>" +
         "</p>"
 }

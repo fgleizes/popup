@@ -11,9 +11,12 @@
 
 	include "header.php";
 
-    $category_Id = $_GET['category_Id'];
+	$category_Id = $_GET['category_Id'];
 
-	$photosParPage = 3; // nombre de photos à afficher par pages
+	$sqlCategoryName = "SELECT `category_name` FROM `Category` WHERE `id` = $category_Id";
+	$category = $database->queryOne($sqlCategoryName);
+
+	$photosParPage = 6; // nombre de photos à afficher par pages
 	$sqlPhotosTotales = "SELECT id FROM `Photos` WHERE `Photos`.`visibility` = 1 AND `Photos`.`publishDate` <= NOW() AND `Photos`.`category_Id` = ?";
 	$photosTotales = sizeof($database->query($sqlPhotosTotales, [$category_Id])); // nombre total de photos à afficher
 	$pagesTotales = ceil($photosTotales / $photosParPage); // nombre total de pages
@@ -41,9 +44,6 @@
 		LIMIT $depart,$photosParPage"
 	;
     $photos = $database->query($sqlPhotos, [$category_Id]);
-    
-    // echo "<pre>";
-    // var_dump($_SERVER);
 	
     include "../templates/theme_tpl.php";
 	include "footer.php";

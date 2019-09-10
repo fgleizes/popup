@@ -13,20 +13,20 @@
 </head>
 
 <body>
-	<header id="home-page">
+	<header>
 		<div id="nav-mobile">
 			<?php if (array_key_exists("connected", $_SESSION) && $_SESSION['connected']) : ?>
 			<nav class="nav-mobile">
 				<ul>
-					<li>
-						<a href="index.php"><i class="fas fa-home"></i></a>
+					<li class="button-homepage">
+						<a href="/projets/Popup/index.php"><i class="fas fa-home"></i></a>
 					</li>
-					<li>
-						<a href="#"><i class="fas fa-layer-group"></i></a>
+					<li class="button-toggle-categories">
+						<a href="#" class="js-toggle-categories">
+							<p>Afficher les catégories</p>
+							<i class="fas fa-layer-group"></i>
+						</a>
 					</li>
-					<!-- <li class="button-share-photo">
-						<a href="#"><i class="fas fa-plus-square"></i></a>
-					</li> -->
 					<li class="button-share-photo">
 						<a href="#modal-share-photos" class="js-modal">
 							<p>Partager une photo</p>
@@ -34,49 +34,76 @@
 						</a>
 					</li>
 					<!-- <li>
-							<a href="public/src/logout.php"><i class="fas fa-search"></i></a>
-						</li> -->
-					<li>
-						<a href="public/src/user.php"><i class="fas fa-user-circle"></i></a>
+						<a href="public/src/logout.php"><i class="fas fa-search"></i></a>
+					</li> -->
+					<li class="button-profile-user">
+						<a href="/projets/Popup/public/src/user.php"><i class="fas fa-user-circle"></i></a>
 					</li>
 				</ul>
+				<div class="container-list-themes">
+					<ul class="list-themes">
+						<?php foreach ($categories as $category) : ?>
+						<li class="theme" <?php if ($nav_en_cours === $_SERVER['PHP_SELF'] . "?category_Id=" . $category['id']) {
+														echo ' id="en-cours"';
+													} ?>>
+							<a href="/projets/Popup/public/src/theme.php?category_Id=<?= $category['id'] ?>"><?= $category['category_name'] ?></a>
+						</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
 			</nav>
 			<?php else : ?>
 			<nav class="nav-mobile">
 				<ul>
-					<li>
-						<a href="index.php"><i class="fas fa-home"></i></a>
+					<li class="button-homepage">
+						<a href="/projets/Popup/index.php"><i class="fas fa-home"></i></a>
+					</li>
+					<li class="button-toggle-categories">
+						<a href="#" class="js-toggle-categories">
+							<p>Afficher les catégories</p>
+							<i class="fas fa-layer-group"></i>
+						</a>
 					</li>
 					<li>
-						<a href="#"><i class="fas fa-layer-group"></i></a>
-					</li>
-					<li>
-						<a href="public/src/login.php"><i class="fas fa-plus-square"></i></a>
+						<a href="/projets/Popup/public/src/login.php"><i class="fas fa-plus-square"></i></a>
 					</li>
 					<!-- <li>
-							<a href="#"><i class="fas fa-search"></i></a>
-						</li> -->
+						<a href="#"><i class="fas fa-search"></i></a>
+					</li> -->
 				</ul>
+				<div class="container-list-themes">
+					<ul class="list-themes">
+						<?php foreach ($categories as $category) : ?>
+						<li class="theme" <?php if ($nav_en_cours === $_SERVER['PHP_SELF'] . "?category_Id=" . $category['id']) {
+														echo ' id="en-cours"';
+													} ?>>
+							<a href="/projets/Popup/public/src/theme.php?category_Id=<?= $category['id'] ?>"><?= $category['category_name'] ?></a>
+						</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
 			</nav>
 			<div id="login-form-mobile">
-				<a href="public/src/login.php" class="button login-button">S'identifier</a>
-				<a href="public/src/signup.php" class="button signup-button">S'enregistrer</a>
+				<a href="/projets/Popup/public/src/login.php" class="button white-button login-button">S'identifier</a>
+				<a href="/projets/Popup/public/src/signup.php" class="button signup-button">S'enregistrer</a>
 			</div>
 			<?php endif ?>
 		</div>
+		<?php if (array_key_exists("connected", $_SESSION) && $_SESSION['connected']) : ?>
+		<?php endif; ?>
 		<nav id="nav-desktop">
 			<div id="nav-left">
 				<a href="/projets/Popup/index.php"><img src="/projets/Popup/public/images/popup.png" alt="Logo du site Popup!" title="Logo du site Popup!" id="logo-popup"></a>
 			</div>
 			<div id="nav-center">
 				<div id="border-list-themes"></div>
-				<div id="container-list-themes">
-					<ul id="list-themes">
+				<div class="container-list-themes">
+					<ul class="list-themes">
 						<?php foreach ($categories as $category) : ?>
 						<li class="theme" <?php if ($nav_en_cours === $_SERVER['PHP_SELF'] . "?category_Id=" . $category['id']) {
 													echo ' id="en-cours"';
 												} ?>>
-							<a href="/projets/Popup/public/src/theme.php?category_Id=<?= $category['id'] ?>"><?= $category['name'] ?></a>
+							<a href="/projets/Popup/public/src/theme.php?category_Id=<?= $category['id'] ?>"><?= $category['category_name'] ?></a>
 						</li>
 						<?php endforeach; ?>
 					</ul>
@@ -98,7 +125,7 @@
 							<a class="button" href="#">Partager une photo</a>
 						</li> -->
 				<li class="button-share-photo desktop">
-					<a class="button js-modal" href="#modal-share-photos">Partager une photo</a>
+					<a class="button white-button js-modal" href="#modal-share-photos">Partager une photo</a>
 				</li>
 				<li>
 					<a href="/projets/Popup/public/src/logout.php"><i class="fas fa-bell"></i></a>
@@ -108,10 +135,10 @@
 				</li>
 				<?php else : ?>
 				<li class="button-share-photo tablette">
-					<a href="#"><i class="fas fa-plus-square"></i></a>
+					<a href="/projets/Popup/public/src/login.php"><i class="fas fa-plus-square"></i></a>
 				</li>
 				<li class="button-share-photo desktop">
-					<a class="button" href="/projets/Popup/public/src/login.php">Partager une photo</a>
+					<a class="button white-button" href="/projets/Popup/public/src/login.php">Partager une photo</a>
 				</li>
 				<li>
 					<a href="/projets/Popup/public/src/login.php">S'identifier</a>

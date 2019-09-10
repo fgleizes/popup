@@ -10,6 +10,9 @@
 	// $categories = $database->query($sqlCategories);
 	/* ****************** HEADER ****************** */
 
+	// echo("<pre>");
+	// var_dump($_SERVER);
+
 	include "public/src/header.php";
 
 	// $database = new Database;

@@ -80,7 +80,7 @@
                             <select id="category" name="category_Id" required>
                                 <option value="">--Catégorie--</option>
                                 <?php foreach ( $categories as $category ): ?>
-                                    <option value="<?= $category['id'] ?>"><?= $category["name"] ?></option>
+                                    <option value="<?= $category['id'] ?>"><?= $category["category_name"] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
