@@ -17,7 +17,8 @@
 		
 		public function uploadPhoto($files)
 		{	
-			define('TARGET', '../../../files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']));    // Repertoire cible
+			// $dossier_traite = $_SERVER['DOCUMENT_ROOT'] . '/Popup2/files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']);    // Repertoire cible
+			$dossier_traite = '../../files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']);    // Repertoire cible
 			define('MAX_SIZE', 15728640);   // Taille max en octets du fichier (15728640 octets / 1048576 octets(=>1Mo) = 15Mo)
 			define('WIDTH_MAX', 10000);     // Largeur max de l'image en pixels
 			define('HEIGHT_MAX', 10000);    // Hauteur max de l'image en pixels
@@ -25,12 +26,12 @@
 			// Tableaux de donnees
 			$tabExt = array('jpg','jpeg');    // Extensions autorisees
 			// $infosImg = array();
-			 
+
 			/************************************************************
 			* Creation du repertoire cible si inexistant
 			*************************************************************/
-			if( !is_dir(TARGET) ) {
-			  if( !mkdir(TARGET, 0755, true) ) {
+			if( !is_dir($dossier_traite) ) {
+			  if( !mkdir($dossier_traite, 0705, true) ) {
 			    exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !');
 			  }
 			}
@@ -67,7 +68,7 @@
 						$nomImage = htmlspecialchars(basename($files["fichier"]["name"]));
 
 			            // On upload le fichier
-						$upload = move_uploaded_file($files['fichier']['tmp_name'], TARGET."/$nomImage");
+						$upload = move_uploaded_file($files['fichier']['tmp_name'], $dossier_traite."/$nomImage");
 
 						/************************************************************************************************************************
           				* On renomme le fichier (A FAIRE QUAND L'UTILISATER VALIDE LE FORMULAIRE D'UPLOAD, AVANT DE L'ENVOYER VERS LA BDD!!!!!!!!)
@@ -124,11 +125,10 @@
 		}
 
 		public function deleteUploadPhoto($infosPhotoToDelete)
-		{	
-			define('TARGET', '../../../files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']));    // Repertoire cible
+		{
+			$dossier_traite = '../../files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']);    // Repertoire cible
 			
-			if( is_dir(TARGET) ) {
-				$dossier_traite = TARGET; 
+			if( is_dir($dossier_traite) ) {
 				$repertoire = opendir($dossier_traite); // On définit le répertoire dans lequel on souhaite travailler.
 			}
 
@@ -160,11 +160,10 @@
 		}
 
 		public function validateUpload($photoToValidate)
-		{	
-			define('TARGET', '../../../files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']));    // Repertoire cible
+		{
+			$dossier_traite = '../../files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']);    // Repertoire cible
 			
-			if( is_dir(TARGET) ) {
-				$dossier_traite = TARGET; 
+			if( is_dir($dossier_traite) ) {
 				$repertoire = opendir($dossier_traite); // On définit le répertoire dans lequel on souhaite travailler.
 			}
 			 

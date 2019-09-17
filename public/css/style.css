@@ -56,12 +56,14 @@ button:disabled {
 	color: #fff;
 }
 .photo-button {
-	color: #777;
-	background-color: hsla(0,0%,100%,.85);
+	color: #999;
+	background-color: #fff;
+	border-color: #ddd;
 }
 .photo-button:hover {
-	background-color: #fff;
-	box-shadow: 0 1px 2px rgba(0,0,0,.08);
+	color: #111;
+	border-color: #999 !important;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
 }
 /* -------- HEADER: NAV; -------- */
 header {
@@ -119,6 +121,10 @@ header {
 	text-decoration: none;
 	color: #999999;
 	transition: color .2s ease-in-out, border .2s ease-in-out;
+}
+#nav-mobile li#en-cours a,
+#nav-desktop li#en-cours a {
+	color: rgba(17, 17, 17, 1);
 }
 #nav-mobile li a:hover,
 #nav-desktop li a:hover {
@@ -281,7 +287,7 @@ header {
 .list-themes .theme#en-cours a {
 	border-bottom: 1px solid rgba(17, 17, 17, 1);
 	/* padding-bottom: 1rem; */
-	color: rgba(17, 17, 17, 1);
+	/* color: rgba(17, 17, 17, 1); */
 }
 /* -------- NAV-RIGHT; -------- */
 #nav-right {
@@ -300,12 +306,19 @@ header {
 #nav-right li {
 	margin-left: 1rem;
 }
-#nav-right li a i {
+/* nav li#en-cours a {
+	color: rgba(17, 17, 17, 1);
+} */
+/* #nav-right li a i {
 	font-size: 2rem;
     display: block;
 }
 #nav-right li:last-child a i {
 	font-size: 2.3rem;
+} */
+#nav-right li a i {
+	font-size: 2.3rem;
+    /* display: block; */
 }
 
 /*******************************************/
@@ -313,7 +326,8 @@ header {
 /*******************************************/
 #presentation 
 {
-	background-image: url(../images/kelsey-curtis-1570051-unsplash.jpg);
+	/* background-image: url(../images/kelsey-curtis-1570051-unsplash.jpg); */
+	background-image: url(../images/image_presentation.jpg);
 	background-size: cover;
 	background-position: center;
 	display: -webkit-box;
@@ -347,7 +361,6 @@ header {
 }
 
 /********* PAGE-THEMES *********/
-
 #presentation-theme {
 	position: relative;
 	padding-top: 3rem;
@@ -361,6 +374,48 @@ header {
 #presentation-theme h2 {
 	font-weight: 400;
 	font-size: 15px;
+}
+
+/********* PAGE-USER *********/
+#presentation-user {
+	position: relative;
+	padding-top: 3rem;
+	/* padding-bottom: 3rem; */
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+#presentation-user h1 {
+	margin: 1rem 0;
+}
+
+#presentation-user h2 {
+	font-weight: 400;
+	font-size: 15px;
+	margin: 1rem 0;
+}
+
+#user {
+	/* display: flex;
+	align-items: center; */
+	margin-bottom: 3rem;
+}
+
+/* #user i {
+	vertical-align: middle;
+} */
+
+#action-user {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 14px;
+}
+
+#action-user a {
+	margin: 0 1rem 1rem 0;
+}
+#action-user a:last-child {
+	margin-right: 0;
 }
 /* -------- MAIN: PHOTOS MOBILE; -------- */
 /* .container-photo
@@ -451,7 +506,9 @@ header {
 /*******************************************/
 /* -------- MAIN: GALLERY-PHOTOS  -------- */
 /*******************************************/
-
+#gallery h4 {
+	margin: 1rem;
+}
 /****** PLUGIN JQUERY: MASONRY; ******/
 /* clearfix */
 .grid:after {
@@ -473,7 +530,7 @@ header {
 	opacity: 0;
 }
 .grid__item {
-	margin-bottom: 5rem;
+	margin-bottom: 2rem;
 	float: left;
 }
 .grid__item img{
@@ -481,6 +538,9 @@ header {
 	width: 100%;
 	height: 100%;
 }
+/* .grid__item a{
+	text-decoration: none;
+} */
 .page-load-status {
   	display: none; /* hidden by default */
 	padding-top: 20px;
@@ -535,16 +595,9 @@ header {
   animation-direction: reverse;
 }
 
-.grid__item:not(:hover) .effect-hover,
-.grid__item:not(:hover) .infos-top,
-.grid__item:not(:hover) .infos-bottom{
-    visibility: hidden;
-    opacity: 0;
-}
-
-
 /********* CSS GALLERY-PHOTOS *********/
 .effect-hover {
+	display: none;
     position: absolute;
     top: 0;
     right: 0;
@@ -569,21 +622,27 @@ header {
 }
 .infos-top i{
 	vertical-align: middle;
-    color: #f15151;
+    /* color: #f15151; */
 }
+
 .infos-bottom {
-    position: absolute;
-    bottom: 20px;
-    padding-right: 20px;
-    padding-left: 20px;
-    width: 100%;
-    height: 32px;
-    display: flex;
-    align-items: end;
-    pointer-events: none;
+	padding: 1rem;
+	display: flex;
+	justify-content: space-between;
 }
 
-
+.auteur {
+	margin: 0;
+	display: inline-block;
+}
+.auteur a{
+	text-decoration: none;
+	color: rgba(153, 153, 153, 1);
+	transition: color .2s ease-in-out;
+}
+.auteur a:hover{
+	color: #000000;
+}
 
 /****************************************************/
 /* ----- ASIDE / MODAL -> PARTAGER DES PHOTOS ----- */
@@ -711,7 +770,8 @@ header {
     padding: 2rem 1rem;
 	display: flex;
 	justify-content: center;
-    flex-direction: column;
+	align-items: center;
+    /* flex-direction: column; */
     flex-grow: 1;
     color: #999;
     border: 2px dashed #e3e3e3;
@@ -924,7 +984,7 @@ header {
 
 .login-form {
 	/*width: 50%;*/
-	height: 100vh;
+	/* height: 100vh; */
 	background-color: rgba(255,255,255, 1);
 	border-radius: 16px;
 	/*margin: auto;*/
@@ -952,10 +1012,14 @@ header {
 	margin-bottom: 6px;
 }
 .form-group {
-	margin: 1.5em 0;
+	margin: 1rem 0;
+}
+.form-group-flex {
+	display: flex;
+	justify-content: space-between;
 }
 .form-group-2 {
-	width: 48%;
+	width: 49%;
 }
 .form-group span {
 	margin: 0 0.5em;
@@ -1074,8 +1138,8 @@ header {
 
 	/***** PAGE THEMES *****/
 	#presentation-theme {
-		padding-top: 60px;
-		padding-bottom: 72px;
+		padding-top: 3.75rem;
+		padding-bottom: 4.5rem;
 		padding-left: 2rem;
 		padding-right: 2rem;
 	}
@@ -1084,8 +1148,21 @@ header {
 		width: 83.33333%;
 	}
 	#presentation-theme h2 {
-		font-size: 18px;
+		font-size: 1.125rem;
 		width: 66.66667%;
+	}
+
+	/********* PAGE-USER *********/
+	#presentation-user {
+		padding-left: 2rem;
+	}
+	#presentation-user h1 {
+		margin: 1rem 0;
+		font-size: 2.875rem;
+	}
+
+	#presentation-user h2 {
+		font-size: 1.125rem;
 	}
 
 /* ----- MAIN -> GALLERY PHOTOS ----- */
@@ -1100,6 +1177,62 @@ header {
 	.grid__item { width: calc(50% - 1rem); }
 
 	.grid__item { margin-bottom: 1rem; }
+
+	.grid__item:not(:hover) .effect-hover,
+	/* .grid__item:not(:hover) .infos-top, */
+	.grid__item:not(:hover) .infos-bottom {
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	.effect-hover {
+		display: block;
+	}
+
+	.infos-bottom {
+		position: absolute;
+		bottom: 20px;
+		padding-right: 20px;
+		padding-left: 20px;
+		width: 100%;
+		height: 32px;
+		display: flex;
+		align-items: center;
+		pointer-events: none;
+	}
+	.auteur a {
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.9);
+		pointer-events: auto;
+	}
+
+	.auteur a:hover {
+		color: rgba(255, 255, 255, 1);
+	}
+	.photo-button {
+		color: #777;
+		background-color: hsla(0, 0%, 100%, .85);
+		border: none;
+		pointer-events: auto;
+	}
+
+	.photo-button:hover {
+		background-color: #fff;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+		border: none;
+	}
+
+	/* .photo-button {
+		color: #999;
+		background-color: #fff;
+		border-color: #ddd;
+	}
+
+	.photo-button:hover {
+		color: #111;
+		border-color: #999 !important;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+	} */
 
 /* ----- MODAL -> SHARE PHOTOS ----- */
 	.modal-wrapper {
@@ -1171,7 +1304,7 @@ header {
 		width: 66.66667%;
 	}
 	#presentation-theme h2 {
-		font-size: 18px;
+		/* font-size: 18px; */
 		width: 50%;
 	}
 /* ----- MAIN / GALLERY PHOTOS ----- */

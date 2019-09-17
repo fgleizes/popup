@@ -1,8 +1,8 @@
-        <script src="/projets/Popup/public/libs/jquery214.js"></script>
-		<script src="/projets/Popup/public/scripts/masonry.js"></script>
-		<script src="/projets/Popup/public/scripts/infinite-scroll.js"></script>
-		<script src="/projets/Popup/public/scripts/main.js"></script>
-		<script src="/projets/Popup/public/scripts/app.js"></script>
-		<!-- <script src="/projets/Popup/public/scripts/upload-photo.js"></script> -->
-	</body>
+        <script src="<?= $root ?>public/libs/jquery214.js"></script>
+        <script src="<?= $root ?>public/scripts/masonry.js"></script>
+        <script src="<?= $root ?>public/scripts/infinite-scroll.js"></script>
+        <script src="<?= $root ?>public/scripts/main2.js"></script>
+        <script src="<?= $root ?>public/scripts/app.js"></script>
+    </body>
+
 </html>

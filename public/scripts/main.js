@@ -24,6 +24,11 @@ $grid.imagesLoaded(function () {
   $grid.masonry('appended', $items);
 });
 
+$grid.on('append.infiniteScroll', function (event, response, path, items) {
+  $(items).find('img[srcset]').each(function (i, img) {
+    img.outerHTML = img.outerHTML;
+  });
+});
 
 // //-------------------------------------//
 // // init Infinite Scroll
@@ -34,7 +39,35 @@ $grid.infiniteScroll({
   outlayer: msnry,
   status: '.page-load-status',
   hideNav: '.pagination',
+  // checkLastPage: '.pagination__next',
   history: false,
+  // scrollThreshold: 600,
+  // loadOnScroll: false,
+  // debug: true,
+  // onInit: function () {
+  //   this.on('append', function (event, response, path, items) {
+  //     $grid.imagesLoaded().done(function () {
+  //       $grid.removeClass('are-images-unloaded');
+  //       // $grid.masonry('option', { itemSelector: '.grid__item' });
+  //       // let $items = $grid.find('.grid__item');
+  //       $grid.masonry('appended', $items);
+  //     });
+  //   });
+  // }
 });
+
+// $grid.on('append.infiniteScroll', function (event, response, path, items) {
+//   $(items).find('img[srcset]').each(function (i, img) {
+//     img.outerHTML = img.outerHTML;
+//   });
+// });
+
+// // initial items reveal
+// $grid.imagesLoaded(function () {
+//   $grid.removeClass('are-images-unloaded');
+//   $grid.masonry('option', { itemSelector: '.grid__item' });
+//   let $items = $grid.find('.grid__item');
+//   $grid.masonry('appended', $items);
+// });
 
 // //-------------------------------------//

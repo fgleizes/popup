@@ -1,9 +1,15 @@
 <main>
-	<section id="presentation-theme">
-		<div id="titles-theme">
-			<h1><?= $category["category_name"] ?></h1>
-			<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias dolorum quam nesciunt quos consequatur fugit!</h2>
+	<section id="presentation-user">
+		<div id="user">
+			<h1><?= $_SESSION["firstname"] ?> <?= $_SESSION["lastname"] ?></h1>
+			<h2><?= $_SESSION["username"] ?></h2>
+			<div id="action-user">
+				<a href="editUserProfil.php" class="button white-button">Modifier votre profil</a>
+				<a href="editUserpassword.php" class="button white-button">Changer votre mot de passe</a>
+				<a href="logout.php" class="button black-button">Déconnexion</a>
+			</div>
 		</div>
+		<h2>Mes photos : </h2>
 	</section>
 
 	<section id="gallery">
@@ -13,32 +19,20 @@
 
 			<?php foreach ($photos as $photo) : ?>
 				<div class="grid__item <?= $photo['category_Id'] ?>">
-					<a title="Afficher la photo originale de <?= $photo['Firstname'] ?> <?= $photo['Lastname'] ?> dans un nouvel onglet" target="_blank" href="../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/<?= $photo['name'] ?>">
+					<a title="Afficher la photo originale dans un nouvel onglet" target="_blank" href="../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/<?= $photo['name'] ?>">
 						<img sizes="(min-width: 992px) calc(calc(100vw - 5rem) / 3), (min-width: 768px) calc(calc(100vw - 4rem) / 2), 100vw" srcset="
 						../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['150w'] ?> 150w,
 						../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['300w'] ?> 300w,
 						../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['500w'] ?> 500w,
 						../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['768w'] ?> 768w,
-						../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['1024w'] ?> 1024w" src="../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['1024w'] ?>" alt="Photo gratuite partagée sur Popup!">
+						../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['1024w'] ?> 1024w" src="../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/thumbs/<?= $photo['1024w'] ?>" alt="Photo gratuite partagée sur Popup!" />
 					</a>
 					<div>
 						<div class="effect-hover"></div>
-						<!-- <div class="infos-top">
-						<div class="buttons-top">
-							<a title="Like photo" class="button photo-button" href="/">
-								<i class="fas fa-heart"></i>
-							</a>
-						</div>
-					</div> -->
 						<div class="infos-bottom">
 							<p class="auteur">
-								<a href="author.php?user_Id=<?= $photo['user_Id'] ?>"><?= $photo['Firstname'] . " " . $photo['Lastname'] ?></a>
+								<a href="theme.php?category_Id=<?= $photo['category_Id'] ?>"><?= $photo['category_name'] ?></a>
 							</p>
-							<div class="buttons-bottom">
-								<a title="Télécharger la photo" download="<?= $photo['name'] ?>" class="button photo-button" href="../files/<?= $photo['user_Id'] . '_' . strtolower($photo['Firstname']) . '_' . strtolower($photo['Lastname']) ?>/<?= $photo['name'] ?>">
-									<i class="fas fa-arrow-down"></i>
-								</a>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -60,7 +54,7 @@
 		<!-- pagination has path : plugin Infite scroll / JQUERY -->
 		<?php if ($pageCourante != $pagesTotales) : ?>
 			<p class="pagination">
-				<a class="pagination__next" href="theme.php?category_Id=<?= $category_Id ?>&page=<?= $pageCourante + 1 ?>">Next page</a>
+				<a class="pagination__next" href="accountUser.php?user_Id=<?= $user_Id ?>&page=<?= $pageCourante + 1 ?>">Next page</a>
 			</p>
 		<?php endif; ?>
 	</section>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 	<head>
 		<title>Popup! S'enregistrer</title>
 		<!-- Balises META -->
@@ -7,17 +8,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- CSS perso -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-		<link rel="stylesheet" href="../css/normalize.css">
-		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" href="../public/css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="../public/css/style.css">
 	</head>
+
 	<body>
-		<!-- <p><a href="index.php">Retour</a></p> -->
 		<div class="login-form">
 			<form action="signup.php" method="post">
-				<h2><img src="../images/popup.png" alt="Logo du site Popup!" title="Logo du site Popup!" id="logo-popup"></h2>
+				<h2><img src="../public/images/popup.png" alt="Logo du site Popup!" title="Logo du site Popup!" id="logo-popup"></h2>
 				<h2>Rejoignez Popup!</h2>
 				<p>Vous avez déja un compte? <a href="login.php">Connectez-vous ici!</a></p>
-				<div class="form-group flex">
+				<div class="form-group form-group-flex">
 					<div class="form-group-2">
 						<label for="firstname">Prénom</label>
 						<input type="text" name="firstname" id="firstname" class="form-control" required>
@@ -45,5 +46,11 @@
 				<p class="login-form-footer">By joining, you agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
 			</form>
 		</div>
+		<?php if (!empty($message)) : ?>
+			<script>
+				alert("<?= $message ?>")
+			</script>
+		<?php endif; ?>
 	</body>
+
 </html>
