@@ -3,6 +3,7 @@
 
 	<head>
 		<title>Popup! S'enregistrer</title>
+		<link rel="shortcut icon" href="../public/images/popup-favicon.png">
 		<!-- Balises META -->
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +42,7 @@
 					<input type="password" name="userpassword" id="userpassword" class="form-control" required>
 				</div>
 				<div class="form-group">
-					<input type="submit" value="Connexion">
+					<input type="submit" value="Connexion" class="button black-button">
 				</div>
 				<p class="login-form-footer">By joining, you agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
 			</form>

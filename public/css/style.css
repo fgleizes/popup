@@ -327,7 +327,7 @@ header {
 #presentation 
 {
 	/* background-image: url(../images/kelsey-curtis-1570051-unsplash.jpg); */
-	background-image: url(../images/image_presentation.jpg);
+	background-image: url(../images/image-presentation-mobile.jpg);
 	background-size: cover;
 	background-position: center;
 	display: -webkit-box;
@@ -1032,8 +1032,8 @@ header {
 	font-size: 15px;
 	line-height: 1.6;
 	color: #111111;
-	background-color: transparent;
-	background-image: none;
+	/* background-color: transparent;
+	background-image: none; */
 	border: 1px solid #999999;
 	border-radius: 3px;
 	-webkit-transition: border-color ease-in-out 0.15s;
@@ -1048,8 +1048,8 @@ header {
 	font-size: 15px;
 	line-height: 1.6;
 	color: #111111;
-	background-color: transparent;
-	background-image: none;
+	/* background-color: transparent;
+	background-image: none; */
 	border: 1px solid #999999;
 	border-radius: 3px;
 	-webkit-transition: border-color ease-in-out 0.15s;
@@ -1057,9 +1057,11 @@ header {
 	transition: border-color ease-in-out 0.15s;
 }
 .login-form input[type="submit"] {
-	cursor: pointer;
 	width: 100%;
-	color: #ffffff;
+	padding: 9px 18px;
+	font-size: 15px;
+	line-height: 1.6;
+	/* color: #ffffff;
 	background-color: #111111;
 	display: inline-block;
 	margin-bottom: 0;
@@ -1084,7 +1086,7 @@ header {
 	user-select: none;
 	-webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	-o-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out; */
 }
 .login-form-footer {
 	text-align: center;
@@ -1126,10 +1128,7 @@ header {
 	#presentation {
 		/* height: 90vh; */
 		margin-bottom: 2rem;
-	}
-	#titles h1 {
-		font-size: 2rem;
-		/* margin: 1rem 0; */
+		background-image: url(../images/image-presentation-desktop.jpg);
 	}
 	#titles h2 {
 		font-size: 1.5rem;

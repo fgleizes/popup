@@ -2,7 +2,7 @@
 <html lang="fr">
 	<head>
 		<title>Popup! Administrateurs :</title>
-		<link rel="shortcut icon" href="../../public/images/popup.png">
+		<link rel="shortcut icon" href="../../public/images/popup-favicon.png">
 		<!-- Balises META -->
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@
 					<input type="password" name="password_admin" id="password_admin" required class="form-control">
 				</div>
 				<div class="form-group">
-					<input type="submit" value="Connexion">
+					<input type="submit" value="Connexion" class="button black-button">
 				</div>
 			</form>
 		</div>

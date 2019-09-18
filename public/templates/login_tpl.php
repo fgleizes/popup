@@ -3,6 +3,7 @@
 
 	<head>
 		<title>Popup! S'identifier</title>
+		<link rel="shortcut icon" href="../public/images/popup-favicon.png">
 		<!-- Balises META -->
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,9 +27,9 @@
 						<input type="password" name="userpassword" id="userpassword" required class="form-control">
 					</div>
 					<div class="form-group">
-						<input type="submit" value="Connexion">
+						<input type="submit" value="Connexion" class="button black-button">
 					</div>
-					<p class="login-form-footer">Si vous n'êtes pas encore inscrit, <a href="signUp.php">enregistrez-vous ici gratuitement :</a></p>
+					<p class="login-form-footer">Si vous n'êtes pas encore inscrit, <a href="signup.php">enregistrez-vous ici gratuitement :</a></p>
 			</form>
 		</div>
 		<?php if (!empty($message)) : ?>

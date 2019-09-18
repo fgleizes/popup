@@ -3,7 +3,7 @@
 
     <head>
         <title>Popup! La banque d'images gratuites socialement connectée!</title>
-        <link rel="shortcut icon" href="../../public/images/popup.png">
+        <link rel="shortcut icon" href="../../public/images/popup-favicon.png">
         <!-- Balises META -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">

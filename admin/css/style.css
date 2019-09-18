@@ -118,8 +118,8 @@ body
 	font-size: 15px;
 	line-height: 1.6;
 	color: #111111;
-	background-color: transparent;
-	background-image: none;
+	/* background-color: transparent;
+	background-image: none; */
 	border: 1px solid #999999;
 	border-radius: 3px;
 	-webkit-transition: border-color ease-in-out 0.15s;
@@ -134,8 +134,8 @@ body
 	font-size: 15px;
 	line-height: 1.6;
 	color: #111111;
-	background-color: transparent;
-	background-image: none;
+	/* background-color: transparent;
+	background-image: none; */
 	border: 1px solid #999999;
 	border-radius: 3px;
 	-webkit-transition: border-color ease-in-out 0.15s;
@@ -143,9 +143,11 @@ body
 	transition: border-color ease-in-out 0.15s;
 }
 .login-form input[type="submit"] {
-	cursor: pointer;
 	width: 100%;
-	color: #ffffff;
+	padding: 9px 18px;
+	font-size: 15px;
+	line-height: 1.6;
+	/* color: #ffffff;
 	background-color: #111111;
 	display: inline-block;
 	margin-bottom: 0;
@@ -170,7 +172,7 @@ body
 	user-select: none;
 	-webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	-o-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out; */
 }
 .login-form-footer {
 	text-align: center;
