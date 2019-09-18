@@ -1,5 +1,4 @@
 .DS_Store
 files
 Configuration.class.php
-phpinfo.php
-phpinfo.pdf
+# phpinfo.php

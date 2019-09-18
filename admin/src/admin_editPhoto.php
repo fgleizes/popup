@@ -1,15 +1,19 @@
 <?php
-	if( array_key_exists("administrateur", $_SESSION)
-    && $_SESSION['administrateur']){
+	session_start();
+	date_default_timezone_set("Europe/Paris");
+
+	if(array_key_exists("administrateur", $_SESSION)
+	&& $_SESSION['admin_connected']
+	){
 		require "../../classes/Database.class.php";
 		require "../../classes/Photo.class.php";
 		require "../../classes/Thumbnail.class.php";
 
-		if ( !empty( $_POST ) 
+		if(!empty( $_POST ) 
 		&& !empty( $_GET )
 		){
 			// FORMULAIRE DE VALIDATION D'UNE PHOTO
-			if ( array_key_exists( "photo_Id", $_GET )
+			if(array_key_exists( "photo_Id", $_GET )
 			&& array_key_exists( "category_Id", $_POST )
 			&& array_key_exists( "publishChoice", $_POST )
 			){
@@ -18,7 +22,7 @@
 				$publishChoice = $_POST["publishChoice"];
 
 				/**** CREATION DES MINIATURES, A PARTIR DES INFOS DE LA BASE DE DONNEES ****/
-				if( !empty($photo_Id)
+				if(!empty($photo_Id)
 				&& !empty($category_Id)
 				&& !empty($publishChoice)
 				){	
@@ -39,17 +43,17 @@
 					$thumb->insertThumbnailsToBdd($photo_Id, $thumb->thumbnails);
 					
 					/**** UPDATE DE LA PHOTO VALIDEE DANS LA BASE DE DONNEES ****/	
-					if ( $publishChoice === "planifier"
+					if($publishChoice === "planifier"
 					&& array_key_exists( "publishDate", $_POST )
 					&& array_key_exists( "heures", $_POST )
 					&& array_key_exists( "minutes", $_POST ) 
 					&& !empty($_POST["publishDate"])
 					){
-						if ( !empty($_POST["heures"]) && !empty($_POST["minutes"]) 
+						if (!empty($_POST["heures"]) && !empty($_POST["minutes"]) 
 						){
 							$publishDate = $_POST["publishDate"] . " " . $_POST["heures"] . ":" . $_POST["minutes"] . ":00";
 						} 
-						elseif ( !empty($_POST["heures"]) && empty($_POST["minutes"]) 
+						elseif (!empty($_POST["heures"]) && empty($_POST["minutes"]) 
 						){
 							$publishDate = $_POST["publishDate"] . " " . $_POST["heures"] . ":00:00";
 						} 
@@ -87,9 +91,8 @@
 		if ( isset( $message )
 		&& !empty( $message ) ){
 			echo "<script>alert('" . $message . "')</script>";
-			echo $message;
 		}
 	} else {
-        header("location: src/login_admin.php");
+        header("location: login_admin.php");
     }
 ?>

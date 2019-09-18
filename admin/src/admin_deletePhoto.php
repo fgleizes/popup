@@ -2,13 +2,16 @@
 	session_start();
 
 	if( array_key_exists("administrateur", $_SESSION)
-    && $_SESSION['administrateur']){
+    && $_SESSION['administrateur']
+    ){
 		require "../../classes/Database.class.php";
 		require "../../classes/Photo.class.php";
 
-		if (!empty($_POST)) {
+        if (!empty($_POST)
+        ){
             if (array_key_exists("file_Id", $_POST)
-            && !empty($_POST["file_Id"])) {
+            && !empty($_POST["file_Id"])
+            ){
 
                 var_dump($_POST);
 

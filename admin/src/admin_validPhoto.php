@@ -2,13 +2,16 @@
     session_start();
     date_default_timezone_set("Europe/Paris");
 
-    if( array_key_exists("administrateur", $_SESSION)
-    && $_SESSION['administrateur']){
+    if(array_key_exists("administrateur", $_SESSION)
+    && $_SESSION['admin_connected']
+    ){
         require "../../classes/Database.class.php";
 
-        if (!empty($_GET)) {
+        if (!empty($_GET)
+        ){
             if ( array_key_exists("photo_id", $_GET)
-            && !empty($_GET["photo_id"])) {
+            && !empty($_GET["photo_id"])
+            ){
                 $photo_Id = $_GET["photo_id"];
                 $sql = 
                     "SELECT Photos.id, Photos.name, Photos.description, Photos.type, Photos.size,
@@ -22,8 +25,8 @@
                 $photo = $database->queryOne($sql, [ $photo_Id ]);
     
                 // On verifie si le nom est renseigné
-                if( !empty($photo["name"]) )
-                {
+                if( !empty($photo["name"]) 
+                ){
                     $dossier_traite = '../../files/'.$photo['user_Id'].'_'.strtolower($photo['Firstname']).'_'.strtolower($photo['Lastname']);
                             
                     $repertoire = opendir($dossier_traite); // On définit le répertoire dans lequel on souhaite travailler.
@@ -39,6 +42,6 @@
         }
         include "../templates/admin_validPhoto_tpl.php";
     } else {
-        header("location: src/login_admin.php");
+        header("location: login_admin.php");
     }
 ?>

@@ -198,25 +198,27 @@
 							$this->nomImage = strtolower($_SESSION["firstname"] . "-" . ($_SESSION["lastname"])) . "-" . uniqid() . "-popup" . '.' . $extension;
 							rename ( $dossier_traite.'/'.$nameInitialPhotoToInsert , $dossier_traite.'/'.$this->nomImage );
 							
+							// date_default_timezone_set("Europe/Paris");
+
+							$this->infosImage = [  // On stock toutes les infos à envoyer vers la BDD' dans un tableau
+								$this->nomImage,
+								// $photoToValidate->{"name"},
+								!empty($photoToValidate->{"description"}) ? $photoToValidate->{"description"} : null,
+								$photoToValidate->{"type"},
+								$photoToValidate->{"size"},
+								$photoToValidate->{"lastModified"},
+								$photoToValidate->{"lastModifiedDate"},
+								// strftime("%F %T", $photoToValidate->{"lastModified"} / 1000),
+								!empty($photoToValidate->{"webkitRelativePath"}) ? $photoToValidate->{"webkitRelativePath"} : null,
+								intval($_SESSION["id"]),
+								1, // On définit la catégorie par défaut => id : 1 / En cours de validation
+								0 // On définit la visibilité par défaut à 0
+							];
 						}
-						// $infosPhoto = [  // On stock toutes les infos dans un tableau
-						$this->infosImage = [  // On stock toutes les infos à envoyer vers la BDD' dans un tableau
-							$this->nomImage,
-							// $photoToValidate->{"name"},
-							!empty($photoToValidate->{"description"}) ? $photoToValidate->{"description"} : null,
-							$photoToValidate->{"type"},
-							$photoToValidate->{"size"},
-							$photoToValidate->{"lastModified"},
-							$photoToValidate->{"lastModifiedDate"},
-							!empty($photoToValidate->{"webkitRelativePath"}) ? $photoToValidate->{"webkitRelativePath"} : null,
-							intval($_SESSION["id"]),
-							1, // On définit la catégorie par défaut => id : 1 / En cours de validation
-							0 // On définit la visibilité par défaut à 0
-						];
 					}
 				}
-				closedir($repertoire);
 			}
+			closedir($repertoire);
 		}
 		
 		public function insertPhotoBdd($infosPhotoToInsert) {

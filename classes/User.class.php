@@ -2,7 +2,7 @@
 	class User{
 
 		public $message;
-		public $validate = false;
+		// public $validate = false;
 
 		public function insertUser($infosUser){
 
@@ -54,15 +54,19 @@
 			session_start();
 			$_SESSION["connected"] = false;
 
+			$usermail = $user["usermail"];
+			$username = $user["usermail"];
+			$userpassword = $user["userpassword"];
+
 			// Requête SQL pour récupérer dans la BDD les informations de l'utilisateur.
 			$sql = "SELECT * FROM `Users` WHERE Usermail = ? OR Username = ?";
 			$database = new database();
-			$infosUserDb = $database->queryOne($sql, [ $user["usermail"], $user["usermail"] ]);
+			$infosUserDb = $database->queryOne($sql, [ $usermail, $username ]);
 
 			if ($infosUserDb) {
 
 				// Si l'utilisateur existe bien, on vérifie que le mot de passe est correct
-				$comparePassword = password_verify($user["userpassword"], $infosUserDb["Userpassword"]);
+				$comparePassword = password_verify($userpassword, $infosUserDb["Userpassword"]);
 				
 				if ($comparePassword) {
 
@@ -76,9 +80,6 @@
 					$_SESSION["creationTimestamp"] = $infosUserDb["CreationTimestamp"];
 					$_SESSION["id"] = $infosUserDb["Id"];
 
-					// $this->message = "Connexion réussie!";
-					// echo "Connexion réussie!";
-
 					// Une fois la connexion établie, on renvoie l'utilisateur sur index.php
 					header("location: ../index.php");
 				} else {
@@ -90,14 +91,11 @@
 		}
 
 		public function logoutUser(){
-			// session_start();
+			session_start();
 
 			//On vide la session en cours et on la détruit.
 			$_SESSION="";
 			session_destroy();
-
-			// $this->message = "Vous êtes déconnecté.";
-			// echo "Vous êtes déconnecté.";
 
 			// Une fois la session détruite, on renvoie l'utilisateur sur index.php
 			header("location: ../index.php");

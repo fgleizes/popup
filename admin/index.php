@@ -1,6 +1,9 @@
-<?php session_start();
+<?php 
+    session_start();
 
-    if (array_key_exists("administrateur", $_SESSION) && $_SESSION["administrateur"]) {
+    if (array_key_exists("administrateur", $_SESSION) 
+    && $_SESSION['admin_connected']
+    ){
         require "../classes/Database.class.php";
 
         $sql = ( 

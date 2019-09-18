@@ -2,6 +2,7 @@
 <html lang="fr">
 	<head>
 		<title>Popup! La banque d'images gratuites socialement connectée!</title>
+	    <link rel="shortcut icon" href="../public/images/popup.png">
 		<!-- Balises META -->
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,8 +48,5 @@
                 <?php endforeach; ?>
             </section>
 		</main>
-		<!-- <script src="../libs/jquery214.js"></script> -->
-		<!-- <script src="../scripts/main.js"></script> -->
-		<!-- <script src="../scripts/upload-photo.js"></script> -->
 	</body>
 </html>

@@ -2,6 +2,7 @@
 <html lang="fr">
 	<head>
 		<title>Popup! Administrateurs :</title>
+		<link rel="shortcut icon" href="../../public/images/popup.png">
 		<!-- Balises META -->
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,7 @@
 					<input type="text" name="login_admin" id="login_admin" required class="form-control" >
 				</div>
 				<div class="form-group">
-					<label for="password_admin">Mot de passe <span><a href="#">(Mot de passe oublié ?)</a></span></label>
+					<label for="password_admin">Mot de passe <!-- <span><a href="#">(Mot de passe oublié ?)</a></span>!--></label>
 					<input type="password" name="password_admin" id="password_admin" required class="form-control">
 				</div>
 				<div class="form-group">
@@ -29,5 +30,10 @@
 				</div>
 			</form>
 		</div>
+		<?php if (!empty($message)) : ?>
+			<script>
+				alert("<?= $message ?>")
+			</script>
+		<?php endif; ?>
 	</body>
 </html>

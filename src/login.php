@@ -14,7 +14,7 @@
 				$message = "Un des champs du formulaire n'a pas été correctement rempli";
 			}
 		} else {
-			$message = "Il y a une erreur de saisie";
+			$message = "Il y a eu une erreur lors de la soumission du formulaire!";
 		}
 	}
 
