@@ -106,7 +106,7 @@
 			}
 		}
 
-		public function deleteUploadPhoto($infosPhotoToDelete)
+		public function deleteUploadPhoto($infosPhotoToDelete) // suppression de l'upload temporaire
 		{
 			$dossier_traite = '../../files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']);    // Repertoire cible
 			
@@ -115,7 +115,7 @@
 			}
 
 			/************************************************************
-			* Script de suppression
+			* Script de suppression de l'upload temporaire
 			*************************************************************/
 
 			// On verifie si la variable existe et si elle contient des informations.
@@ -221,6 +221,64 @@
 			;
 			$database = new Database();
 			$database->executeSql($sqlEdit, [ $publishDate, $category_Id, $photo_Id ]);
+		}
+
+
+		/***********************************************************************************
+		* Suppression d'une photo du serveur par l'admin (par ex, pour photo non appropriée)
+		***********************************************************************************/
+
+		public function deletePhotoAdmin($infosPhotoToDelete) // suppression de l'upload définitive par l'admin
+		{
+			// On verifie si la variable existe et si elle contient des informations.
+			if(isset($infosPhotoToDelete)
+			){
+				if(!empty($infosPhotoToDelete)
+				){
+					if(!empty($infosPhotoToDelete['user_Id'])
+					&& !empty($infosPhotoToDelete['Firstname'])
+					&& !empty($infosPhotoToDelete['Lastname'])
+					){
+						$dossier_traite = '../../files/'.$infosPhotoToDelete['user_Id'].'_'.strtolower($infosPhotoToDelete['Firstname']).'_'.strtolower($infosPhotoToDelete['Lastname']);    // Repertoire cible
+
+						if( is_dir($dossier_traite) ) {
+							$repertoire = opendir($dossier_traite); // On définit le répertoire dans lequel on souhaite travailler.
+							
+							/************************************************************
+							 * Script de suppression
+							*************************************************************/
+							
+							// On verifie si le champ fileName est rempli
+							if( !empty($infosPhotoToDelete['name']) )
+							{
+								$photoToDelete = $infosPhotoToDelete['name'];
+								
+								if(file_exists( $dossier_traite.'/'.$photoToDelete ) // On vérifie que le dossier traité et le fichier existe,
+								&& is_file( $dossier_traite.'/'.$photoToDelete ) ) // et qu'il s'agit bien d'un fichier.
+								{
+									$chemin = $dossier_traite."/".$photoToDelete; // On définit le chemin du fichier à effacer.
+									
+									unlink($chemin); // On efface.
+								}
+							}
+							closedir($repertoire); // On referme le répertoire dans lequel on vient de travailler.
+						}
+					}
+				}
+			}
+		}
+
+		public function updateDeletedPhotoToBdd($photo_Id) {
+			// On prépare la requête SQL de modification de données
+			$sqlEdit = 
+				"UPDATE `Photos` 
+				SET `category_Id` = 0
+				WHERE `Photos`.`id` = ?"  
+			;
+			// On ne supprime pas les données de la bdd, mais on passe la catégorie à 0 pour indiquer que le fichier a été supprimé du serveur
+			
+			$database = new Database();
+			$database->executeSql($sqlEdit, [ $photo_Id ]);
 		}
 	}
 ?>

@@ -31,9 +31,9 @@
                             <h3>Informations sur la photo :</h3>
                             <div>
                                 <h4>ID de la photo :</h4>
-                                <p id="photo_Id"><?= $photo["id"] ?></p>
+                                <p id="photo_id"><?= $photo["id"] ?></p>
                                 <h4>Nom :</h4>
-                                <p id="fileName"><?= $photo["name"] ?></p>
+                                <p id="photo_name"><?= $photo["name"] ?></p>
                                 <h4>Description (<em>si renseignée</em>) :</h4>
                                 <p><?= !empty($photo["description"]) ? $photo["description"] : "N/A" ?></p>
                                 <h4>Format :</h4>
@@ -119,7 +119,6 @@
                         </div>
                         <div id="valid">
                             <a href="#" class="button delete-button">Supprimer la photo</a>
-                            <!-- <input type="submit" name="supprimer" value="Supprimer la photo" class="button delete-button"> -->
                             <input type="submit" name="publier" value="Publier la photo" class="button black-button">
                         </div>
                     </div>

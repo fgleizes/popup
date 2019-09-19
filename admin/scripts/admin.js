@@ -30,19 +30,18 @@ validPhotoForm.addEventListener("submit", function () {
     validPhoto.appendChild(loader)
 })
 
-deletePhoto.addEventListener("click", function (){
+deletePhoto.addEventListener("click", function (e){
+    e.preventDefault()
     confirmDeletePhoto = confirm("Êtes-vous sûr(e) de vouloir supprimer cette photo ?")
-    console.log(confirmDeletePhoto)
 
     if (confirmDeletePhoto) {
-        let photo_Id = document.querySelector("#photo_Id").textContent
-        console.log(photo_Id)
+        let photo_Id = document.querySelector("#photo_id").textContent
         removeFile(photo_Id)
     }
     
     /****************** SUPPRESSION DU FICHIER SUR LE SERVEUR ******************/
-    function removeFile(file_Id) {
-        let uri = "../src/admin_deletePhoto.php"
+    function removeFile(id) {
+        let uri = "admin_deletePhoto.php"
         let xhr = new XMLHttpRequest()
 
         let fd = new FormData()
@@ -52,10 +51,11 @@ deletePhoto.addEventListener("click", function (){
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // Handle response.
                 xhr.responseText ? alert(xhr.responseText) : null
+                xhr.responseText === "La photo a été supprimée du serveur" ? window.location.href = "../index.php" : alert(xhr.responseText)
             }
         }
 
-        fd.append('file_Id', file_Id)
+        fd.append('photo_Id', id)
         // Initiate a multipart/form-data upload
         xhr.send(fd)
     }

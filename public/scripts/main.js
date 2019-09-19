@@ -6,9 +6,6 @@ jQuery(document).ready(function(){
         columnWidth: '.grid__col-sizer',
         gutter: '.grid__gutter-sizer',
         percentPosition: true,
-        // stagger: '0.3s',
-        // transitionDuration: '0.4s',
-        // horizontalOrder: true,
         visibleStyle: { transform: 'translateY(0)', opacity: 1 },
         hiddenStyle: { transform: 'translateY(100px)', opacity: 0 }
     });
@@ -31,18 +28,7 @@ jQuery(document).ready(function(){
             status: '.page-load-status',
             scrollThreshold: 800,
             hideNav: '.pagination',
-            history: false,
-            // onInit: function () {
-            //     this.on( 'append', function( event, response, path, items ) {
-            //         // $grid.imagesLoaded().progress( function() {
-            //         //     $grid.addClass('are-images-unloaded');
-            //         // });
-            //         $grid.imagesLoaded().done( function() {
-            //             $grid.masonry();
-            //             // $grid.removeClass('are-images-unloaded');
-            //         });
-            //     });
-            // }
+            history: false
         });
     }
 
@@ -52,7 +38,6 @@ jQuery(document).ready(function(){
         });
         $grid.imagesLoaded().done(function () {
             $grid.masonry();
-            // $grid.removeClass('are-images-unloaded');
         });  
     });
 });

@@ -76,22 +76,25 @@
 
 				}else{
 					header("refresh: 0.001; " . $_SERVER['HTTP_REFERER']);
-					$message = "Il y a une erreur de saisie";
+					$message = "Les champs n'ont pas été rempli";
 				}
 			}else{
 				header("refresh: 0.001; " . $_SERVER['HTTP_REFERER']);
-				$message = "Les champs n'ont pas été rempli";
+				$message = "Il y a une erreur de saisie";
 			}
 		}else{
 			header("refresh: 0.001; " . $_SERVER['HTTP_REFERER']);
 			$message = "Il y a eu une erreur lors de la soumission du formulaire";
 		}
-
-		if ( isset( $message )
-		&& !empty( $message ) ){
-			echo "<script>alert('" . $message . "')</script>";
-		}
 	} else {
-        header("location: login_admin.php");
-    }
+		// header("location: login_admin.php");
+		header("refresh: 0.001; " . $_SERVER['HTTP_REFERER']);
+		$message = "(Re)connectez-vous en tant qu'administrateur pour supprimer ou valider une photo!";
+	}
+	
+	if (isset( $message )
+	&& !empty( $message ) 
+	){
+		echo "<script>alert('" . $message . "')</script>";
+	}
 ?>
