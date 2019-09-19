@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  ven. 16 août 2019 à 14:34
+-- Généré le :  jeu. 19 sep. 2019 à 15:24
 -- Version du serveur :  5.7.25
 -- Version de PHP :  7.3.1
 
@@ -23,12 +23,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Administrateurs`
+--
+
+CREATE TABLE `Administrateurs` (
+  `Id_admin` tinyint(1) NOT NULL,
+  `Login_admin` varchar(255) NOT NULL,
+  `Password_admin` varchar(255) NOT NULL,
+  `Email_admin` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Category`
 --
 
 CREATE TABLE `Category` (
   `id` tinyint(3) NOT NULL,
-  `name` varchar(40) NOT NULL
+  `category_name` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -63,7 +76,7 @@ CREATE TABLE `Photos` (
   `creationTimestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `publishDate` datetime DEFAULT NULL,
   `user_Id` tinyint(3) NOT NULL,
-  `category_Id` tinyint(3) NOT NULL,
+  `category_Id` tinyint(3) NOT NULL COMMENT '0 = supprimé du serveur',
   `visibility` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -105,6 +118,12 @@ CREATE TABLE `Users` (
 --
 
 --
+-- Index pour la table `Administrateurs`
+--
+ALTER TABLE `Administrateurs`
+  ADD PRIMARY KEY (`Id_admin`);
+
+--
 -- Index pour la table `Category`
 --
 ALTER TABLE `Category`
@@ -137,6 +156,12 @@ ALTER TABLE `Users`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `Administrateurs`
+--
+ALTER TABLE `Administrateurs`
+  MODIFY `Id_admin` tinyint(1) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `Category`
