@@ -439,7 +439,15 @@ if (asideExist !== null) {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
                 // Handle response.
-                xhr.responseText ? alert(xhr.responseText) : null
+                if (xhr.responseText){ 
+                    if(xhr.responseText === "Vous n'êtes plus connecté, reconnectez-vous pour uploader vos photos") {
+                        fileList = []
+                        alert(xhr.responseText)
+                        window.location.href = chemin + "src/login.php"
+                    }else{
+                        alert(xhr.responseText)
+                    }
+                }
 
                 // On vérifie si toutes les XHR envoyées sont terminées, pour activer le bouton submit
                 if (!xhrStatus.filter(x => x.readyState != 4).length && !xhrStatus.filter(x => x.status != 200).length) {
@@ -466,7 +474,15 @@ if (asideExist !== null) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // Handle response.
-                xhr.responseText ? alert(xhr.responseText) : null
+                if (xhr.responseText) {
+                    if (xhr.responseText === "Vous n'êtes plus connecté, reconnectez-vous pour uploader vos photos") {
+                        fileList = []
+                        alert(xhr.responseText)
+                        window.location.href = chemin + "src/login.php"
+                    } else {
+                        alert(xhr.responseText)
+                    }
+                }
             }
         }
 
@@ -640,7 +656,15 @@ if (asideExist !== null) {
 
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // Handle response.
-                xhr.responseText ? alert(xhr.responseText) : null
+                if (xhr.responseText) {
+                    if (xhr.responseText === "Vous n'êtes plus connecté, reconnectez-vous pour uploader vos photos") {
+                        fileList = []
+                        alert(xhr.responseText)
+                        window.location.href = chemin + "src/login.php"
+                    } else {
+                        alert(xhr.responseText)
+                    }
+                }
             }
 
             // On vérifie si toutes les XHR envoyées sont terminées pour vider le tableau des requêtes en cours

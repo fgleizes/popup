@@ -23,7 +23,7 @@
 			}
 		}
 	} else {
-		// Si l'utilisateur n'est pas connecté à la session, on le renvoie vers la page login.php
-		header("location: ../login.php");
+		// Si l'utilisateur n'est pas connecté à la session
+		echo "Vous n'êtes plus connecté, reconnectez-vous pour uploader vos photos";
 	}
 ?>

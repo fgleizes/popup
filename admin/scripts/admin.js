@@ -51,7 +51,7 @@ deletePhoto.addEventListener("click", function (e){
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // Handle response.
                 xhr.responseText ? alert(xhr.responseText) : null
-                xhr.responseText === "La photo a été supprimée du serveur" ? window.location.href = "../index.php" : alert(xhr.responseText)
+                xhr.responseText === "La photo a été supprimée du serveur" ? window.location.href = "../index.php" : null
             }
         }
 
