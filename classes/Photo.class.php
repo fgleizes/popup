@@ -6,26 +6,18 @@
 		// Variables
 		public $nomImage = '';
 		public $extension = '';
-		// public $infosImg = '';
 		public $infosImage = array();
-		// public $thumbnails = array();
 		public $message = '';
-
-		// public $pageCourante;
-		// public $pagesTotales;
-		// public $photos;
 		
 		public function uploadPhoto($files)
 		{	
-			// $dossier_traite = $_SERVER['DOCUMENT_ROOT'] . '/Popup2/files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']);    // Repertoire cible
 			$dossier_traite = '../../files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']);    // Repertoire cible
-			define('MAX_SIZE', 15728640);   // Taille max en octets du fichier (15728640 octets / 1048576 octets(=>1Mo) = 15Mo)
+			define('MAX_SIZE', 15728640);   // Taille max en octets du fichier (15728640 octets / 1048576 octets(1Mo) = 15Mo)
 			define('WIDTH_MAX', 10000);     // Largeur max de l'image en pixels
 			define('HEIGHT_MAX', 10000);    // Hauteur max de l'image en pixels
 
 			// Tableaux de donnees
 			$tabExt = array('jpg','jpeg');    // Extensions autorisees
-			// $infosImg = array();
 
 			/************************************************************
 			* Creation du repertoire cible si inexistant
@@ -64,21 +56,11 @@
 			          if(isset($files['fichier']['error']) 
 			            && UPLOAD_ERR_OK === $files['fichier']['error'])
 			          {
-			          	// On protège le nom du fichier à charger sur le serveur
+			          	// On protège le nom du fichier temporaire à charger sur le serveur
 						$nomImage = htmlspecialchars(basename($files["fichier"]["name"]));
 
-			            // On upload le fichier
+			            // On upload le fichier temporaire
 						$upload = move_uploaded_file($files['fichier']['tmp_name'], $dossier_traite."/$nomImage");
-
-						/************************************************************************************************************************
-          				* On renomme le fichier (A FAIRE QUAND L'UTILISATER VALIDE LE FORMULAIRE D'UPLOAD, AVANT DE L'ENVOYER VERS LA BDD!!!!!!!!)
-          				*************************************************************************************************************************/
-
-			            // $nomImage = md5(uniqid()) .'.'. $extension;
-			            // 
-			            // ou
-			            // 
-			            // $nomImage = $_SESSION["firstName"] . "-" . $_SESSION["name"] . "-" . uniqid() . "-popup" . '.' . $extension;
 						
 			            //On teste l'upload
 			            if($upload)
@@ -167,10 +149,9 @@
 				$repertoire = opendir($dossier_traite); // On définit le répertoire dans lequel on souhaite travailler.
 			}
 			 
-			/************************************************************
+			/******************************************************************
 			* Script de validation définitive de l'upload, et changement de nom
-			*************************************************************/
-			// var_dump($photoToValidate);
+			******************************************************************/
 
 			if(!empty($photoToValidate))
 			{	
@@ -193,23 +174,21 @@
 						if (file_exists( $dossier_traite.'/'.$nameInitialPhotoToInsert ) // On vérifie que le fichier existe dans le répertoire traité, 
 						&& is_file( $dossier_traite.'/'.$nameInitialPhotoToInsert ) ) // et qu'il s'agit bien d'un fichier
 						{
-							// On renomme le fichier avant de stocker les infos à envoyer vers la BDD'
+							/************************************************************************
+          					* On renomme le fichier avant de stocker les infos à envoyer vers la BDD'
+          					************************************************************************/
 							$extension = pathinfo( $dossier_traite.'/'.$nameInitialPhotoToInsert, PATHINFO_EXTENSION);
 							$this->nomImage = strtolower($_SESSION["firstname"] . "-" . ($_SESSION["lastname"])) . "-" . uniqid() . "-popup" . '.' . $extension;
 							rename ( $dossier_traite.'/'.$nameInitialPhotoToInsert , $dossier_traite.'/'.$this->nomImage );
-							
-							// date_default_timezone_set("Europe/Paris");
 
-							$this->infosImage = [  // On stock toutes les infos à envoyer vers la BDD' dans un tableau
+							$this->infosImage = [  // On stock dans un tableau toutes les infos à envoyer vers la BDD'
 								$this->nomImage,
-								// $photoToValidate->{"name"},
-								!empty($photoToValidate->{"description"}) ? $photoToValidate->{"description"} : null,
+								!empty($photoToValidate->{"description"}) ? $photoToValidate->{"description"} : null, // Pour le moment desciption est désactivée, on retourne null
 								$photoToValidate->{"type"},
 								$photoToValidate->{"size"},
 								$photoToValidate->{"lastModified"},
 								$photoToValidate->{"lastModifiedDate"},
-								// strftime("%F %T", $photoToValidate->{"lastModified"} / 1000),
-								!empty($photoToValidate->{"webkitRelativePath"}) ? $photoToValidate->{"webkitRelativePath"} : null,
+								!empty($photoToValidate->{"webkitRelativePath"}) ? $photoToValidate->{"webkitRelativePath"} : null, // Si "webkitRelativePath" est vide, on retourne null
 								intval($_SESSION["id"]),
 								1, // On définit la catégorie par défaut => id : 1 / En cours de validation
 								0 // On définit la visibilité par défaut à 0
@@ -243,131 +222,5 @@
 			$database = new Database();
 			$database->executeSql($sqlEdit, [ $publishDate, $category_Id, $photo_Id ]);
 		}
-
-		// public function displayPhotos(){
-		// 	$photosParPage = 6; // nombre de photos à afficher par pages
-			
-		// 	$database = new database();
-		// 	$sqlPhotosTotales = "SELECT id FROM `Photos` WHERE `Photos`.`visibility` = 1 AND `Photos`.`publishDate` <= NOW()";
-		// 	$photosTotales = sizeof($database->query($sqlPhotosTotales)); // nombre total de photos à afficher
-		// 	$pagesTotales = ceil($photosTotales / $photosParPage); // nombre total de pages
-			
-		// 	if ( isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0 ) {
-		// 		$_GET['page'] = intval($_GET['page']);
-		// 		$pageCourante = $_GET['page'];
-		// 	} else {
-		// 		$pageCourante = 1;
-		// 	}
-
-		// 	$depart = ($pageCourante - 1) * $photosParPage;
-
-		// 	$sqlPhotos = 
-		// 		"SELECT Photos.id, Photos.name, Photos.description, Photos.size, Photos.category_Id,
-		// 				Photos.creationTimestamp, Photos.lastModified, Photos.lastModifiedDate, Photos.publishDate,
-		// 				Thumbnails.150w, Thumbnails.300w, Thumbnails.500w, Thumbnails.768w, Thumbnails.1024w, 
-		// 				Photos.user_Id, Users.Firstname, Users.Lastname, Users.Username
-		// 		FROM `Photos`
-		// 		JOIN Users ON Users.Id = Photos.user_Id
-		// 		JOIN Thumbnails ON Photos.Id = Thumbnails.photo_Id
-		// 		JOIN Category ON Photos.category_Id = Category.id
-		// 		WHERE `Photos`.`visibility` = 1 AND `Photos`.`publishDate` <= NOW()
-		// 		ORDER BY `Photos`.`publishDate` DESC
-		// 		LIMIT $depart,$photosParPage"
-		// 	;
-		// 	$photos = $database->query($sqlPhotos);
-		// }
-
-
-
-		
-		// public function createThumbnails($nomImage) {
-
-		// 	define('TARGET', '../../../files/'.$_SESSION['id'].'_'.strtolower($_SESSION['firstname']).'_'.strtolower($_SESSION['lastname']));    // Repertoire cible concernant l'utilisateur
-
-		// 	$dossier_thumbnails = TARGET.'/thumbs//'; 
-			 
-		// 	/************************************************************
-		// 	* Creation du repertoire cible si inexistant
-		// 	*************************************************************/
-		// 	if( !is_dir($dossier_thumbnails) ) {
-		// 	  if( !mkdir($dossier_thumbnails, 0755) ) {
-		// 	    exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !');
-		// 	  }
-		// 	}
-
-		// 	/* read the source image */
-		// 	$src = TARGET.'/'.$nomImage;
-		// 	$source_image = imagecreatefromjpeg($src);
-		// 	$width = imagesx($source_image);
-		// 	$height = imagesy($source_image);
-
-		// 	// $desired_width = [100, 200, 300, 400, 500, 600, 700, 800 ,900 , 1000, 1100, 1200, 1296, 1400, 1600, 1800, 2000, 2200, 2400, 2592];
-		// 	$desired_width = [150, 300, 500, 768, 1024/*, 1508*/];
-		// 	// $desired_width = [1024];
-		// 	// $desired_width = [500, 768];
-		// 	// $desired_width = [464, 752];
-
-		// 	for ($i=0; $i < sizeof($desired_width) ; $i++) { 
-				
-		// 		/* find the "desired height" of this thumbnail, relative to the desired width  */
-		// 		$desired_height = floor($height * ($desired_width[$i] / $width));
-				
-		// 		/* create a new, "virtual" image */
-		// 		$virtual_image = imagecreatetruecolor($desired_width[$i], $desired_height);
-				
-		// 		/* copy source image at a resized size */
-		// 		imagecopyresampled($virtual_image, $source_image, 0, 0, 0, 0, $desired_width[$i], $desired_height, $width, $height);
-
-		// 		$thumbnailName = 'thumb-'.$desired_width[$i]."w-".$nomImage;
-		// 		$this->thumbnails[] = $thumbnailName;
-		// 		$dest = $dossier_thumbnails.$thumbnailName;
-
-		// 		/* create the physical thumbnail image to its destination */
-		// 		imagejpeg($virtual_image, $dest);
-		// 	}
-
-
-		// 	// /* find the "desired height" of this thumbnail, relative to the desired width  */
-		// 	// $desired_height_thumb = floor($height * (150 / $width));
-		// 	// $desired_height_small = floor($height * (300 / $width));
-		// 	// $desired_height_medium = floor($height * (500 / $width));
-		// 	// $desired_height_medium_large = floor($height * (768 / $width));
-		// 	// $desired_height_large = floor($height * (1024 / $width));
-			
-		// 	// /* create a new, "virtual" image */
-		// 	// $virtual_image_thumb = imagecreatetruecolor(150, $desired_height_thumb);
-		// 	// $virtual_image_small = imagecreatetruecolor(300, $desired_height_small);
-		// 	// $virtual_image_medium = imagecreatetruecolor(500, $desired_height_medium);
-		// 	// $virtual_image_medium_large = imagecreatetruecolor(768, $desired_height_medium_large);
-		// 	// $virtual_image_large = imagecreatetruecolor(1024, $desired_height_large);
-			
-		// 	// /* copy source image at a resized size */
-		// 	// imagecopyresampled($virtual_image_thumb, $source_image, 0, 0, 0, 0, 150, $desired_height_thumb, $width, $height);
-		// 	// imagecopyresampled($virtual_image_small, $source_image, 0, 0, 0, 0, 300, $desired_height_small, $width, $height);
-		// 	// imagecopyresampled($virtual_image_medium, $source_image, 0, 0, 0, 0, 500, $desired_height_medium, $width, $height);
-		// 	// imagecopyresampled($virtual_image_medium_large, $source_image, 0, 0, 0, 0, 768, $desired_height_medium_large, $width, $height);
-		// 	// imagecopyresampled($virtual_image_large, $source_image, 0, 0, 0, 0, 1024, $desired_height_large, $width, $height);
-
-		// 	// $thumbnailName_thumb = 'thumb-'.$nomImage;
-		// 	// $thumbnailName_small = 'small-'.$nomImage;
-		// 	// $thumbnailName_medium = 'medium-'.$nomImage;
-		// 	// $thumbnailName_medium_large = 'medium_large-'.$nomImage;
-		// 	// $thumbnailName_large = 'large-'.$nomImage;
-
-		// 	// // $this->thumbnails[] = $thumbnailName;
-
-		// 	// $dest_thumb = $dossier_thumbnails.$thumbnailName_thumb;
-		// 	// $dest_small = $dossier_thumbnails.$thumbnailName_small;
-		// 	// $dest_medium = $dossier_thumbnails.$thumbnailName_medium;
-		// 	// $dest_medium_large = $dossier_thumbnails.$thumbnailName_medium_large;
-		// 	// $dest_large = $dossier_thumbnails.$thumbnailName_large;
-
-		// 	// /* create the physical thumbnail image to its destination */
-		// 	// imagejpeg($virtual_image_thumb, $dest_thumb);
-		// 	// imagejpeg($virtual_image_small, $dest_small);
-		// 	// imagejpeg($virtual_image_medium, $dest_medium);
-		// 	// imagejpeg($virtual_image_thumb, $dest_medium_large);
-		// 	// imagejpeg($virtual_image_thumb, $dest_large);
-		// }
 	}
 ?>

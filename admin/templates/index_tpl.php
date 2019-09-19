@@ -25,15 +25,6 @@
                     <li>Par :</li>
                     <li>UserID</li>
                     <li></li>
-                    <!-- <li><i class="fas fa-check"></i><i class="fas fa-times"></i><i class="fas fa-info-circle"></i></li>
-                    <li>
-                        <input type="checkbox" disabled="disabled" name="visible_admin"
-                            <?php if ($photo["visibility"] == 1): ?>
-                                checked
-                            <?php endif; ?> 
-                        />
-                    </li>
-                    <a href="form_edit_post.php?article_id=<?= $photo["id"] ?>" id="edition" title="Editer l'article"><i class="fas fa-pencil-alt"></i></a> -->
                 </ul>
                 <?php foreach ( $photos as $photo ): ?>
                     <ul>

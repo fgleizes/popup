@@ -31,9 +31,10 @@
                             
                     $repertoire = opendir($dossier_traite); // On définit le répertoire dans lequel on souhaite travailler.
     
-                    if (file_exists( $dossier_traite.'/'.$photo["name"] ) && is_file( $dossier_traite.'/'.$photo["name"] ) ) {
+                    if(file_exists( $dossier_traite.'/'.$photo["name"]) 
+                    && is_file( $dossier_traite.'/'.$photo["name"])
+                    ){
                         $fileSize = getimagesize( $dossier_traite.'/'.$photo["name"] );
-                        // $fileLastModifiedDate = filemtime( $dossier_traite.'/'.$photo["name"] );
                     }
                 }
                 $sql2 = "SELECT * FROM `Category` WHERE Category.id != 1";

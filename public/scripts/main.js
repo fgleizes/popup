@@ -1,73 +1,58 @@
-//-------------------------------------//
-// init Masonry
+jQuery(document).ready(function(){
 
-let $grid = $('.grid').masonry({
-  itemSelector: 'none', // select none at first
-  columnWidth: '.grid__col-sizer',
-  gutter: '.grid__gutter-sizer',
-  percentPosition: true,
-  // transitionDuration: '0s',
-  stagger: '0.3s',
-  // // nicer reveal transition
-  visibleStyle: { transform: 'translateY(0)', opacity: 1 },
-  hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },
+    // Masonry grid var and options
+    var $grid = jQuery('.grid').masonry({
+        itemSelector: '.grid__item',
+        columnWidth: '.grid__col-sizer',
+        gutter: '.grid__gutter-sizer',
+        percentPosition: true,
+        // stagger: '0.3s',
+        // transitionDuration: '0.4s',
+        // horizontalOrder: true,
+        visibleStyle: { transform: 'translateY(0)', opacity: 1 },
+        hiddenStyle: { transform: 'translateY(100px)', opacity: 0 }
+    });
+
+    // initial items reveal
+    $grid.imagesLoaded(function () {
+        $grid.removeClass('are-images-unloaded');
+        $grid.masonry('layout');
+    });
+
+    // get Masonry instance
+    var msnry = $grid.data('masonry');
+
+     // Infinite Scroll options
+    if ($('.pagination__next').length) {
+        $grid.infiniteScroll({
+            path: '.pagination__next',
+            append: '.grid__item',
+            outlayer: msnry,
+            status: '.page-load-status',
+            scrollThreshold: 800,
+            hideNav: '.pagination',
+            history: false,
+            // onInit: function () {
+            //     this.on( 'append', function( event, response, path, items ) {
+            //         // $grid.imagesLoaded().progress( function() {
+            //         //     $grid.addClass('are-images-unloaded');
+            //         // });
+            //         $grid.imagesLoaded().done( function() {
+            //             $grid.masonry();
+            //             // $grid.removeClass('are-images-unloaded');
+            //         });
+            //     });
+            // }
+        });
+    }
+
+    $grid.on('append.infiniteScroll', function (event, response, path, items) {
+        $(items).find('img[srcset]').each(function (i, img) {
+            img.outerHTML = img.outerHTML;
+        });
+        $grid.imagesLoaded().done(function () {
+            $grid.masonry();
+            // $grid.removeClass('are-images-unloaded');
+        });  
+    });
 });
-
-// get Masonry instance
-let msnry = $grid.data('masonry');
-
-// initial items reveal
-$grid.imagesLoaded(function () {
-  $grid.removeClass('are-images-unloaded');
-  $grid.masonry('option', { itemSelector: '.grid__item' });
-  let $items = $grid.find('.grid__item');
-  $grid.masonry('appended', $items);
-});
-
-$grid.on('append.infiniteScroll', function (event, response, path, items) {
-  $(items).find('img[srcset]').each(function (i, img) {
-    img.outerHTML = img.outerHTML;
-  });
-});
-
-// //-------------------------------------//
-// // init Infinite Scroll
-
-$grid.infiniteScroll({
-  path: '.pagination__next',
-  append: '.grid__item',
-  outlayer: msnry,
-  status: '.page-load-status',
-  hideNav: '.pagination',
-  // checkLastPage: '.pagination__next',
-  history: false,
-  // scrollThreshold: 600,
-  // loadOnScroll: false,
-  // debug: true,
-  // onInit: function () {
-  //   this.on('append', function (event, response, path, items) {
-  //     $grid.imagesLoaded().done(function () {
-  //       $grid.removeClass('are-images-unloaded');
-  //       // $grid.masonry('option', { itemSelector: '.grid__item' });
-  //       // let $items = $grid.find('.grid__item');
-  //       $grid.masonry('appended', $items);
-  //     });
-  //   });
-  // }
-});
-
-// $grid.on('append.infiniteScroll', function (event, response, path, items) {
-//   $(items).find('img[srcset]').each(function (i, img) {
-//     img.outerHTML = img.outerHTML;
-//   });
-// });
-
-// // initial items reveal
-// $grid.imagesLoaded(function () {
-//   $grid.removeClass('are-images-unloaded');
-//   $grid.masonry('option', { itemSelector: '.grid__item' });
-//   let $items = $grid.find('.grid__item');
-//   $grid.masonry('appended', $items);
-// });
-
-// //-------------------------------------//

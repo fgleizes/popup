@@ -36,7 +36,6 @@
 					$infosPhotoDb = $database->queryOne($sql, [ $photo_Id ]);
 
 					$thumb = new thumbnail();
-					// ini_set('memory_limit', '-1');
 					$thumb->createThumbnails($infosPhotoDb);
 
 					/**** INSERTION DES NOMS DES MINIATURES DANS LA BASE DE DONNEES ****/

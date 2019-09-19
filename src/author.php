@@ -2,7 +2,8 @@
     session_start();
    
     if (isset($_GET['user_Id']) 
-    && !empty($_GET['user_Id'])) {
+    && !empty($_GET['user_Id'])
+    ){
         include "header.php";
 
         $author_Id = $_GET['user_Id'];

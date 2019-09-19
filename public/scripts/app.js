@@ -37,10 +37,6 @@ if (asideExist !== null) {
     let previouslyFocusedElement = null
     let stateObj = { index: window.location.href };
 
-    let scrollPosition
-    // let html = document.querySelector("html")
-    // let body = document.querySelector("body")
-
     const openModal = function (e) {
         e.preventDefault()
         history.replaceState(stateObj, window.location.href, window.location.href + "#modal-share-photos");
@@ -50,21 +46,6 @@ if (asideExist !== null) {
     }
 
     const showModal = function (modal) {
-        // scrollPosition = window.scrollY
-        // window.addEventListener("scroll", stopScroll);
-
-        // document.querySelector("html").style.position = "fixed"
-        // document.querySelector("html").style.width = "100%"
-
-        // document.querySelector("body").style.position = "fixed"
-        // document.querySelector("body").style.width = "100%"
-
-        // document.ontouchmove = function (event) {
-        //     event.preventDefault();
-        // }
-
-        // document.addEventListener("touchmove", preventDefault)
-        
         document.body.style.overflowY = "hidden"
         focusableElements = Array.from(modal.querySelectorAll(focusableSelector))
         modal.style.display = null
@@ -90,17 +71,6 @@ if (asideExist !== null) {
     }
 
     const hideModal = function (modal) {
-        // window.scrollY = scrollPosition
-        // window.removeEventListener('scroll', stopScroll)
-        
-        // document.querySelector("html").style.position = null
-        // document.querySelector("html").style.width = null
-
-        // document.querySelector("body").style.position = null
-        // document.querySelector("body").style.width = null
-
-        // document.removeEventListener("touchmove", preventDefault)
-
         document.body.style.overflowY = null
         modal.setAttribute('aria-hidden', 'true')
         modal.removeAttribute('aria-modal')
@@ -118,7 +88,6 @@ if (asideExist !== null) {
         const hide = function () {
             modal.style.display = "none"
             modal.removeEventListener('animationend', hide)
-            // document.body.style.overflowY = null
             modal = null
         }
         modal.addEventListener('animationend', hide)
@@ -127,15 +96,6 @@ if (asideExist !== null) {
     const stopPropagation = function (e) {
         e.stopPropagation()
     }
-
-    // const preventDefault = function (e) {
-    //     e.preventDefault()
-    // }
-
-    // const stopScroll = function (e) {
-    //     // window.scrollY = scrollPosition
-    //     window.scrollTo(0, scrollPosition)
-    // }
 
     const focusInModal = function (e) {
         e.preventDefault()
@@ -151,10 +111,6 @@ if (asideExist !== null) {
         if (index < 0) {
             index = focusableElements.length - 1
         }
-        // e.shiftKey === true ? index-- : index++
-        // index >= focusableElements.length ? index = 0 : null
-        // index < 0 ? index = focusableElements.length - 1 : null
-        // focusableElements[index].focus()
     }
 
     document.querySelectorAll('.js-modal').forEach(a => {
@@ -168,14 +124,13 @@ if (asideExist !== null) {
         if (e.key === 'Tab' && modal !== null) {
             focusInModal(e)
         }
-        // e.key === "Escape" || e.key === "Esc" ? closeModal(e) : null
-        // e.key === "Tab" && modal !== null ? focusInModal(e) : null
     })
 
     /**********************************************************************/
     /******* GESTION DE LA PAGE AU CHARGEMENT/RECHARGEMENT DE L'URL *******/
     /**********************************************************************/
-    
+    // On vérifie si le script app.js est appelé depuis l'index.php, ou depuis un fichier dans src,
+	// et on définit la racine du chemin relatif à utiliser
     var chemin
     if (window.location.pathname.match('index.php')){
         chemin = ''
@@ -183,6 +138,7 @@ if (asideExist !== null) {
         chemin = '../'
     }
 
+    // Si le hash #modal-share-photos dans l'url au chargement du DOM, alors on affiche le modal d'upload
     window.addEventListener("DOMContentLoaded", (e) => {
         if (window.location.href.endsWith('#modal-share-photos')) {
             modal = document.querySelector('#modal-share-photos')
@@ -190,6 +146,7 @@ if (asideExist !== null) {
         }
     })
 
+    // Si des photos sont chargées temporairement, alors on demande une confirmation avant le déchargement de la page
     window.addEventListener("beforeunload", function (e) {
         if (fileList.length) {
             let confirmationMessage = "\o/";
@@ -199,6 +156,7 @@ if (asideExist !== null) {
         }
     })
 
+    // Si confirmation validée, alors on supprime les photos temporaires précédemment chargées
     window.addEventListener('unload', function (e) {
         fileList.forEach(x => removeFileAtRefresh(x))
     });
@@ -207,20 +165,14 @@ if (asideExist !== null) {
         let fd = new FormData()
         fd.append('fileName', file.name)
 
-        // let uri = window.location.origin + "/Popup2/public/src/upload_photo/delete_UploadPhoto.php"
         let uri = chemin + "src/upload_photo/delete_UploadPhoto.php"
 
-        // navigator.sendBeacon("/projets/popup/public/src/upload_photo/delete_UploadPhoto.php", fd)
         navigator.sendBeacon(uri, fd)
     }
 
-    /*********************************************************************/
+    /**************************************************************************/
     /******* DRAG AND DROP SUR LE MODAL (ASIDE id="#modal-share-photo") *******/
-    /*********************************************************************/
-
-    // let dropbox = document.querySelector("#modal-share-photos")
-    // let dropbox = document.querySelector(".modal-wrapper")
-    // let containerForm = document.querySelector("#container-share-photo-form")
+    /**************************************************************************/
     var containerSharePhotoForm = document.querySelector("#container-share-photo-form")
 
     var dragAndDrop = document.createElement("div")
@@ -273,7 +225,6 @@ if (asideExist !== null) {
     /****************** DECLARATION DES VARIABLES GLOBALES, ET INITIALISATION DU DOM ******************/
     window.URL = window.URL || window.webkitURL
 
-    // let containerSharePhotoForm = document.querySelector("#container-share-photo-form")
     var containerUploadPhoto = document.querySelector("#body-share-photo-form")
     var labelUploadPhoto = document.querySelector("#body-share-photo-form label")
     var nombreRestantUpload = document.querySelectorAll(".nombre-upload")
@@ -283,7 +234,6 @@ if (asideExist !== null) {
     containerConfirmSharePhoto.id = "container-confirm-share-photo"
 
     var upload = document.querySelector("#upload-photo")
-    // upload.addEventListener("change", handleFiles, false)
 
     var preview = document.createElement("div")
     preview.id = "preview"
@@ -291,8 +241,12 @@ if (asideExist !== null) {
     var list = document.createElement("div")
     list.classList.add("list")
 
+    var resetUploadFiles = upload.files
+    var fileList = []
+    var visus = []
+    var xhrStatus = []
 
-    // Creation des colonnes pour l'affichage des uploads
+    /****************** Creation des colonnes pour l'affichage des uploads temporaires ******************/
     var nbColonnes
     var listColonnes
 
@@ -319,6 +273,7 @@ if (asideExist !== null) {
 
     createColonne(nbColonnes)
 
+    // Adapter le nombre de colonne en fonction de la largeur de l'écran de l'utilisateur
     const resizePreviewList = function () {
         if (window.matchMedia("(min-width: 992px)").matches && nbColonnes !== 3) {
             listColonnes.forEach(colonne => colonne.remove())
@@ -339,60 +294,26 @@ if (asideExist !== null) {
     }
 
     window.onresize = resizePreviewList
-
-   
-    // for (let i = 0; i < 3; i++) {
-    //     let colonne = document.createElement("div")
-    //     colonne.classList.add("colonne")
-    //     listColonnes.push(colonne)
-    //     list.appendChild(colonne)
-    // }
-    // preview.appendChild(list)
     
-
-    var maxSizeFile = 15728640   // Taille max en octets du fichier (15728640 octets / 1048576 octets( => 1Mo) = 15Mo)
+    // Caractéristiques des fichiers acceptés
+    var maxSizeFile = 15728640   // Taille max en octets du fichier (15728640 octets / 1048576 octets(1Mo) = 15Mo)
     var typeFile = "image/jpeg"  // Extensions autorisees
     var maxWidthFile = 10000      // Largeur max de l'image en pixels
     var maxHeightFile = 10000     // Hauteur max de l'image en pixels
-
-    var resetUploadFiles = upload.files
-    var fileList = []
-    var visus = []
-    var xhrStatus = []
 
     /****************** INSERTION DES FICHIERS ET VERIFICATIONS CÔTE CLIENT ******************/
     function handleFiles(files = null) {
         let thisFiles
         this.files ? thisFiles = this.files : thisFiles = files
 
-        // console.log("-------------------------------------")
-        // console.log("this.files = " + this.files)
-        // console.log(this.files)
-        // console.log("-------------------------------------")
-        // console.log("files = " + files)
-        // console.log(files)
-        // console.log("-------------------------------------")
-        // console.log("upload.files = " + upload.files)
-        // console.log(upload.files)
-        // console.log("-------------------------------------")
-        // console.log("thisFile = " + thisFiles)
-        // console.log(thisFiles)
-        // console.log("-------------------------------------")
-
-        // if (thisFiles && !thisFiles.length) {
-        //     alert("Aucun(s) fichier(s) sélectionné(s) !")
-        //     console.log("Aucun(s) fichier(s) sélectionné(s) !")
-        // }
-
+        // Limite d'upload de 10 fichiers à la fois. (Rajouter plus tard une limite dans le temps, par ex 10 par semaine)
         if (fileList.length < 10) {
             Array.from(thisFiles).forEach(x => {
                 let img = new Image
                 img.src = URL.createObjectURL(x)
-                img.onload = () => {
-                    // console.log(x)
-                    // console.log("width : " + img.width)
-                    // console.log("height : " + img.height)
 
+                // On vérifie les caractéristiques du fichier, côté client
+                img.onload = () => {
                     if (x.type == typeFile) {
                         if (x.size <= maxSizeFile) {
                             if (img.width <= maxWidthFile) {
@@ -449,7 +370,7 @@ if (asideExist !== null) {
         // On affiche les visuels des images séletionnées dans la colonne correspondante
         displayImage(visu)
 
-        // On upload les images sur le serveur
+        // On upload les images temporaires sur le serveur
         sendFile(img)
     }
 
@@ -459,12 +380,12 @@ if (asideExist !== null) {
 
     /****************** UPLOAD DU FICHIER SUR LE SERVEUR ******************/
     function sendFile(img) {
+        // creation d'un canvas pour l'affichage du chargement de l'upload
         let canvas = createThrobber(img);
 
         let fd = new FormData()
         fd.append('fichier', img.file)
 
-        // let uri = window.location.origin + "/Popup2/public/src/upload_photo/upload_photo.php"
         let uri = chemin + "src/upload_photo/upload_photo.php"
         let xhr = new XMLHttpRequest()
 
@@ -494,9 +415,9 @@ if (asideExist !== null) {
 
 
             /********* NON UTILISE POUR LE MOMENT *********/
-            // Description facultative
+            // Description facultative :
             fileList[fileList.indexOf(img.file)].description = ""
-
+            
             // let descriptionPhoto = document.createElement("input")
             // info.appendChild(descriptionPhoto)
             // descriptionPhoto.type = 'textarea'
@@ -521,8 +442,6 @@ if (asideExist !== null) {
                 xhr.responseText ? alert(xhr.responseText) : null
 
                 // On vérifie si toutes les XHR envoyées sont terminées, pour activer le bouton submit
-                // !xhrStatus.filter(x => x.readyState != 4).length && !xhrStatus.filter(x => x.status != 200).length 
-                // 	? submitButton.removeAttribute("disabled") : null
                 if (!xhrStatus.filter(x => x.readyState != 4).length && !xhrStatus.filter(x => x.status != 200).length) {
                     submitButton.removeAttribute("disabled")
                     xhrStatus = []
@@ -538,7 +457,6 @@ if (asideExist !== null) {
 
     /****************** SUPPRESSION DU FICHIER SUR LE SERVEUR ******************/
     function removeFile(file) {
-        // let uri = window.location.origin + "/Popup2/public/src/upload_photo/delete_UploadPhoto.php"
         let uri = chemin + "src/upload_photo/delete_UploadPhoto.php"
         let xhr = new XMLHttpRequest()
 
@@ -549,15 +467,6 @@ if (asideExist !== null) {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // Handle response.
                 xhr.responseText ? alert(xhr.responseText) : null
-
-                // On vérifie si toutes les XHR de transfert de fichier envoyées sont terminées, pour activer le bouton submit
-                // if (xhrStatus.length){
-                // 	!xhrStatus.filter(x => x.readyState != 4).length && !xhrStatus.filter(x => x.status != 200).length
-                // 		? submitButton.removeAttribute("disabled") : null		
-                // } 
-                // else { // S'il n'y a plus de requete en cours on désactive le bouton submit
-                // 	submitButton.setAttribute("disabled", "")
-                // }
             }
         }
 
@@ -573,14 +482,12 @@ if (asideExist !== null) {
 
     function createDisplay() {
         containerUploadPhoto.appendChild(preview)
-        // infosUpload.remove()
     }
 
     function createButton(element, img) {
         let containerButtons = document.createElement("div")
         containerButtons.classList.add("container-buttons")
         element.appendChild(containerButtons)
-        // containerButtons.style.zIndex = "10"
 
         let positionButtons = document.createElement("div")
         positionButtons.classList.add("position-buttons")
@@ -603,46 +510,15 @@ if (asideExist !== null) {
             e.preventDefault()
             removeImageDisplay(img.file)
         })
-
-        // function createButton(element, img) {
-        //     let div1 = document.createElement("div")
-        //     div1.classList.add("div1")
-        //     div1.style.zIndex = "10"
-        //     element.appendChild(div1)
-
-        //     let div2 = document.createElement("div")
-        //     div2.classList.add("div2")
-        //     div1.appendChild(div2)
-
-        //     let div3 = document.createElement("div")
-        //     div3.classList.add("div3")
-
-        //     let button = document.createElement("button")
-        //     button.className = "button"
-
-        //     let iconeButton = document.createElement("i")
-        //     iconeButton.className = "fas fa-times"
-
-        //     div2.appendChild(button)
-        //     div2.appendChild(div3)
-        //     button.appendChild(iconeButton)
-
-        //     button.addEventListener("click", function (e) {
-        //         e.preventDefault()
-        //         removeImageDisplay(img.file)
-        //     })
-        // }
     }
 
     function removeImageDisplay(file) {
         visus.map(visu => visu.remove())
         visus = visus.filter(visu => visus.indexOf(visu) !== fileList.indexOf(file))
-        // visus.map(visu => listColonnes[visus.indexOf(visu) % 3].appendChild(visu))
         visus.map(visu => displayImage(visu))
 
         fileList.splice(fileList.indexOf(file), 1)
         nombreRestantUpload.forEach(x => x.textContent = 10 - visus.length)
-        // nombreRestantUpload.textContent = 10 - fileList.length
 
         !fileList.length ? removeDisplay()
             : fileList.length == 1 ? submitButton.value = "Publier " + fileList.length + " photo"
@@ -653,10 +529,6 @@ if (asideExist !== null) {
         visus.map(x => x.remove())
         visus = []
         preview.remove()
-        // labelUploadPhoto.appendChild(infosUpload)
-
-        // fileList = []
-
 
         submitButton.value = "Publier sur Popup!"
         submitButton.setAttribute("disabled", "")
@@ -700,15 +572,10 @@ if (asideExist !== null) {
 
             // On vérifie si toutes les XHR envoyées sont terminées, pour activer le bouton submit
             if (xhrStatus.length) {
-                // !xhrStatus.filter(x => x.readyState != 4).length && !xhrStatus.filter(x => x.status != 200).length
-                // 	? submitButton.removeAttribute("disabled") : null
                 if (!xhrStatus.filter(x => x.readyState != 4).length && !xhrStatus.filter(x => x.status != 200).length) {
                     submitButton.removeAttribute("disabled")
                 }
             }
-            // else{
-            // 	submitButton.setAttribute("disabled", "")
-            // }
         })
     }
 
@@ -753,7 +620,6 @@ if (asideExist !== null) {
                 "type": x.type,
                 "size": x.size,
                 "lastModified": x.lastModified,
-                // "lastModifiedDate": x.lastModifiedDate,
                 "lastModifiedDate": new Date(x.lastModified).toLocaleString(),
                 "webkitRelativePath": x.webkitRelativePath
             }
@@ -764,7 +630,6 @@ if (asideExist !== null) {
     function sendToDb(informations) {
         let json_upload = "json_upload=" + JSON.stringify(informations)
 
-        // let uri = window.location.origin + "/Popup2/public/src/upload_photo/add_photo.php"
         let uri = chemin + "src/upload_photo/add_photo.php"
         let xhr = new XMLHttpRequest()
 
@@ -784,11 +649,11 @@ if (asideExist !== null) {
                 xhrStatus = []
                 setTimeout(() => {
                     confirmSharePhoto()
-                }, 2500)
+                }, 2000)
             }
         };
 
-        xhrStatus.push(xhr) // On pousse chaque requête envoyée dans un tableau des requêtes en cours
+        xhrStatus.push(xhr) // On ajoute chaque requête envoyée dans un tableau des requêtes en cours
         xhr.send(json_upload)
     }
 

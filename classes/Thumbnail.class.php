@@ -5,7 +5,6 @@
 	{
 		// Variables
 		public $thumbnails = array();
-		public $message = '';
 		
 		public function createThumbnails($infosPhoto) 
 		{
@@ -28,11 +27,7 @@
 			$width = imagesx($source_image);
 			$height = imagesy($source_image);
 
-			$desired_width = [150, 300, 500, 768, 1024/*, 1508*/];
-			// $desired_width = [100, 200, 300, 400, 500, 600, 700, 800 ,900 , 1000, 1100, 1200, 1296, 1400, 1600, 1800, 2000, 2200, 2400, 2592];
-			// $desired_width = [1024];
-			// $desired_width = [500, 768];
-			// $desired_width = [464, 752];
+			$desired_width = [150, 300, 500, 768, 1024];
 
 			for ($i=0; $i < sizeof($desired_width) ; $i++) { 
 				/* find the "desired height" of this thumbnail, relative to the desired width  */
@@ -58,8 +53,6 @@
 			$sql = 
 				"INSERT INTO `Thumbnails`(`id`, `150w`, `300w`, `500w`, `768w`, `1024w`, `creationTimestamp`, `photo_Id`)
 				VALUES ( null, ?, ?, ?, ?, ?, NOW(), ? )"
-				// "INSERT INTO `Thumbnails`(`id`, `150w`, `300w`, `500w`, `768w`, `1024w`, `creationTimestamp`, `photo_Id`) 
-				// VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8])"
 			;
 
 			$database = new Database();

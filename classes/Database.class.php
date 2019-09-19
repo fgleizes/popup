@@ -1,6 +1,4 @@
 <?php  
-	// namespace \Classes;
-
 	require "Configuration.class.php";
 	
 	class Database extends Configuration

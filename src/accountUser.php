@@ -1,9 +1,11 @@
 <?php
 	session_start();
 	
+	// On vérifie que l'utilisateur qui essaye d'atteindre la page accountUser est bien connecté à la $_SESSION
 	if(array_key_exists("connected", $_SESSION) 
 	&& $_SESSION['connected'] 
-	&& array_key_exists("id", $_SESSION)) {
+	&& array_key_exists("id", $_SESSION)
+	){
 		require "header.php";
 
 		$user_Id = $_SESSION['id'];
@@ -44,6 +46,7 @@
 		include "../public/templates/accountUser_tpl.php";
 		include "footer.php";
 	} else {
+		// Si l'utilisateur n'est pas connecté à la session, on le renvoie vers la page login.php
 		header("location: login.php");
 	}
 ?>

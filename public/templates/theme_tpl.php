@@ -23,13 +23,14 @@
 					</a>
 					<div>
 						<div class="effect-hover"></div>
+						<!-- Emplacement prévu pour ajouter des fonctionnalités, tel que la possibilité de "liker" une photo -->
 						<!-- <div class="infos-top">
-						<div class="buttons-top">
-							<a title="Like photo" class="button photo-button" href="/">
-								<i class="fas fa-heart"></i>
-							</a>
-						</div>
-					</div> -->
+							<div class="buttons-top">
+								<a title="Like photo" class="button photo-button" href="/">
+									<i class="fas fa-heart"></i>
+								</a>
+							</div>
+						</div> -->
 						<div class="infos-bottom">
 							<p class="auteur">
 								<a href="author.php?user_Id=<?= $photo['user_Id'] ?>"><?= $photo['Firstname'] . " " . $photo['Lastname'] ?></a>
@@ -65,6 +66,7 @@
 		<?php endif; ?>
 	</section>
 
+	<!-- On vérifie que l'utilisateur est connecté à la session pour accéder au modal d'upload de photo -->
 	<?php if (array_key_exists("connected", $_SESSION) && $_SESSION['connected']) : ?>
 		<!-- Modal d'upload de photos -->
 		<aside id="modal-share-photos" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none;">

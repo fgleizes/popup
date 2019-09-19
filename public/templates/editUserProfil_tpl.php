@@ -3,6 +3,7 @@
 
     <head>
         <title>Popup! Modifier le profil utilisateur</title>
+        <link rel="shortcut icon" href="../public/images/popup-favicon.png">
         <!-- Balises META -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +33,7 @@
                     <input type="email" name="usermail" id="usermail" class="form-control" value="<?= $infosUser["Usermail"] ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="username">Nom d'utilisateur<span>(uniquement lettres, nombres, et underscores)</span></label>
+                    <label for="username">Nom d'utilisateur <!-- <span>(uniquement lettres, nombres, et underscores)</span> --> </label>
                     <input type="text" name="username" id="username" class="form-control" value="<?= $infosUser["Username"] ?>" required>
                 </div>
                 <div class="form-group">
@@ -40,6 +41,8 @@
                 </div>
             </form>
         </div>
+
+        <!-- Pour afficher les messages en cas d'erreur -->
         <?php if (!empty($message)) : ?>
         <script>
             alert("<?= $message ?>")

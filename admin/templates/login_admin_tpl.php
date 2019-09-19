@@ -12,7 +12,6 @@
 		<link rel="stylesheet" type="text/css" href="../../public/css/style.css">
 	</head>
 	<body>
-		<!-- <p><a href="../../index.php">Retour</a></p> -->
 		<div class="login-form">
 			<form action="login_admin.php" method="post">
 				<h2><img src="../../public/images/popup.png" alt="Logo du site Popup!" title="Logo du site Popup!" id="logo-popup"></h2>
@@ -30,6 +29,8 @@
 				</div>
 			</form>
 		</div>
+
+		<!-- Pour afficher les messages en cas d'erreur -->
 		<?php if (!empty($message)) : ?>
 			<script>
 				alert("<?= $message ?>")

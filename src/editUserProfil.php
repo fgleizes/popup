@@ -1,23 +1,31 @@
 <?php
 	session_start();
 	
+	// On vérifie que l'utilisateur qui essaye d'atteindre la page d'édition du profil est bien connecté à la $_SESSION
 	if (array_key_exists("connected", $_SESSION) 
 	&& $_SESSION['connected'] 
-	&& array_key_exists("id", $_SESSION)) {
+	&& array_key_exists("id", $_SESSION)
+	){ 
 		require "../classes/Database.class.php";
 		require "../classes/User.class.php";
 		
-		if(!empty($_POST)) {
+		// On vérifie si l'utilisateur à soumis le formulaire d'édition du profil
+		if(!empty($_POST)
+		){	// On vérifie que les index existent
 			if (array_key_exists("firstname", $_POST)
 			&& array_key_exists("lastname", $_POST)
 			&& array_key_exists("usermail", $_POST)
-			&& array_key_exists("username", $_POST)) {
+			&& array_key_exists("username", $_POST)
+			){	// On vérifie que tous les champs soient rempli
 				if (!empty($_POST["firstname"])
 				&& !empty($_POST["lastname"])
 				&& !empty($_POST["usermail"])
-				&& !empty($_POST["username"])) {
-					if (filter_var($_POST["usermail"], FILTER_VALIDATE_EMAIL)) {
+				&& !empty($_POST["username"])
+				){	// On vérifie si l'adresse mail saisie est au bon format
+					if (filter_var($_POST["usermail"], FILTER_VALIDATE_EMAIL)
+					){	// On instancie la class User
 						$user = new user();
+						// On utilise la méthode editUserProfil pour modifier les données de l'utilisateur dans la bdd
 						$user->editUserProfil($_POST);
 						$message = $user->message;
 					} else {
@@ -38,6 +46,7 @@
 
 		include "../public/templates/editUserProfil_tpl.php";
 	} else {
+		// Si l'utilisateur n'est pas connecté, on le renvoie vers la page login.php
 		header("location: login.php");
 	}
 ?>

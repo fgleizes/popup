@@ -1,5 +1,4 @@
 <?php
-	// require "../../classes/Database.class.php";
 	class Administrateur{
 
 		public $message;
@@ -31,7 +30,7 @@
 					$_SESSION["email_admin"] = $infosAdminDb["Email-admin"];
 					$_SESSION["id_admin"] = $infosAdminDb["Id_admin"];
 
-					// Une fois la connexion établie, on renvoie l'administrateur sur index.php
+					// Une fois la connexion établie, on renvoie l'administrateur sur index.php de l'admin
 					header("location: ../index.php");
 				}else{
 					$this->message = "Mot de passe incorrect!";

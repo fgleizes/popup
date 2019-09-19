@@ -2,7 +2,6 @@
 	class User{
 
 		public $message;
-		// public $validate = false;
 
 		public function insertUser($infosUser){
 
@@ -33,12 +32,6 @@
 
 				$database = new Database();
 				$database->executeSql($sql, $arrayInfosUser);
-
-				// $this->message = "Votre compte a été créé avec succès.";
-				// echo "Votre compte a été créé avec succès.";
-				// echo "<script>alert('Votre compte a été créé avec succès.')</script>";
-
-				// sleep(2);
 
 				// Après la création du compte utilisateur, on se connecte automatiquement à la session 
 				// et on renvoie l'utilisateur sur index.php
@@ -126,10 +119,6 @@
 			$_SESSION["usermail"] = $arrayInfosUser[2];
 			$_SESSION["username"] = $arrayInfosUser[3];
 
-			// $this->message = "Profil utilisateur modifié avec succès.";
-			// echo "Profil utilisateur modifié avec succès.";
-			// echo "<script>alert('Profil utilisateur modifié avec succès.')</script>";
-
 			// Une fois le profil utilisateur modifié, on renvoie l'utilisateur sur la page user.php
 			header("location: accountUser.php");
 		}
@@ -162,9 +151,6 @@
 
 					$database = new Database();
 					$database->executeSql($sql, $arrayInfosUser);
-
-					// $this->message = "Mot de passe modifié avec succès.";
-					// echo "Mot de passe modifié avec succès.";
 
 					// Une fois le mot de passe modifié, on renvoie l'utilisateur sur la page user.php
 					header("location: accountUser.php");
