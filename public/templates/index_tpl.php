@@ -1,3 +1,4 @@
+<!-- Le template du header se situe sur un fichier à part : header_tpl.php / inclus dans le fichier source -->
 <main>
 	<section id="presentation">
 		<div id="titles">
@@ -107,3 +108,4 @@
 		</aside>
 	<?php endif ?>
 </main>
+<!-- Le template du footer se situe sur un fichier à part footer_tpl.php -->

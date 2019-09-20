@@ -6,7 +6,7 @@
 	&& $_SESSION['connected'] 
 	&& array_key_exists("id", $_SESSION)
 	){
-		require "header.php";
+		include "header.php";
 
 		$user_Id = $_SESSION['id'];
 

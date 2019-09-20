@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 
-	require "src/header.php";
+	include "src/header.php";
 
 	// Gestion de l'affichage des photos dans la gallery : pour plugin Masonry et infinite scroll / JQUERY
 	$photosParPage = 6; // nombre de photos à afficher par pages

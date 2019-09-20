@@ -37,13 +37,13 @@
                     <input type="text" name="username" id="username" class="form-control" value="<?= $infosUser["Username"] ?>" required>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Modifier le profil">
+                    <input type="submit" value="Modifier le profil" class="button black-button">
                 </div>
             </form>
         </div>
 
         <!-- Pour afficher les messages en cas d'erreur -->
-        <?php if (!empty($message)) : ?>
+        <?php if (isset($message) && !empty($message)) : ?>
         <script>
             alert("<?= $message ?>")
         </script>

@@ -43,7 +43,7 @@
 		$sql = ("SELECT Users.Firstname, Users.Lastname, Users.Username, Users.Usermail FROM `Users` WHERE Users.Id = ?");
 		$database = new database();
 		$infosUser = $database->queryOne($sql, [ $_SESSION['id'] ]);
-
+		
 		include "../public/templates/editUserProfil_tpl.php";
 	} else {
 		// Si l'utilisateur n'est pas connecté, on le renvoie vers la page login.php

@@ -30,13 +30,13 @@
                     <input type="password" name="verifNewUserpassword" id="verifNewUserpassword" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Modifier le mot de passe">
+                    <input type="submit" value="Modifier le mot de passe" class="button black-button">
                 </div>
             </form>
         </div>
 
         <!-- Pour afficher les messages en cas d'erreur -->
-        <?php if (!empty($message)) : ?>
+        <?php if (isset($message) && !empty($message)) : ?>
             <script>
                 alert("<?= $message ?>")
             </script>
